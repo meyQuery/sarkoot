@@ -4,7 +4,7 @@ const minifyCSS = require('gulp-csso');
 const concat = require('gulp-concat');
 
 function css() {
-    return src('src/scss/app.scss')
+    return src('src/scss/sarkoot.scss')
         .pipe(sass())
         .pipe(minifyCSS())
         .pipe(dest('dist/css'))
@@ -12,7 +12,7 @@ function css() {
 
 function js() {
     return src('src/js/**/*.js', {sourcemaps: true})
-        .pipe(concat('app.min.js'))
+        .pipe(concat('sarkoot.min.js'))
         .pipe(dest('dist/js', { sourcemaps: true }))
 }
 
