@@ -1,0 +1,26 @@
+{
+  "name": "sarkoot",
+  "version": "1.0.0",
+  "description": "Bootstrap 4 Admin Dashboard",
+  "main": "gulpfile.js",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-csso": "^4.0.1",
+    "gulp-sass": "^4.0.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahmadkarimi1991/sarkoot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ahmadkarimi1991/sarkoot/issues"
+  },
+  "homepage": "https://github.com/ahmadkarimi1991/sarkoot#readme"
+}
