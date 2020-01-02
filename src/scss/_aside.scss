@@ -1,0 +1,19 @@
+#aside {
+    position: fixed;
+    top: 0;
+    left: -260px;
+    min-width: 260px;
+    width: 260px;
+    height: 100%;
+    background-color: #364558;
+    z-index: 999;
+    -webkit-transition: all .2s;
+    -o-transition: all .2s;
+    transition: all .2s;
+}
+
+@media (min-width: 992px) {
+    #aside {
+        left: 0;
+    }
+}

@@ -4,4 +4,9 @@ html {
 
 body {
     min-height: 100%;
+    background-color: #edf1f5;
+}
+
+body.rtl {
+    font-family: Dana;
 }
