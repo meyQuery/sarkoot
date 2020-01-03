@@ -10,10 +10,31 @@
     -webkit-transition: all .2s;
     -o-transition: all .2s;
     transition: all .2s;
+
+    &.open {
+        left: 0;
+    }
+}
+
+.rtl {
+    #aside {
+        right: -260px;
+        left: auto;
+
+        &.open {
+            right: 0;
+        }
+    }
 }
 
 @media (min-width: 992px) {
     #aside {
         left: 0;
+    }
+
+    .rtl {
+        #aside {
+            right: 0;
+        }
     }
 }
