@@ -1,3 +1,22 @@
 #footer {
+    min-height: 55px;
     height: 55px;
+    font-size: 14px;
+
+    .footer-menu {
+        & > a {
+            margin-left: 1rem;
+        }
+    }
+}
+
+.rtl {
+    #footer {
+        .footer-menu {
+            & > a {
+                margin-right: 1rem;
+                margin-left: unset;
+            }
+        }
+    }
 }
