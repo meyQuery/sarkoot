@@ -5,15 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+    <link rel="stylesheet" href="dist/vendors/fontawesome-pro-5.7.1/css/all.min.css">
     <link rel="stylesheet" href="dist/vendors/bootstrap-4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="dist/css/sarkoot.css">
 
     <title>Sarkoot | سرکوت</title>
 </head>
 <body class="d-flex flex-column">
-    <aside id="aside"></aside>
+    <aside id="aside">
+        <div class="aside-brand d-flex justify-content-center align-items-center px-3">
+            <h1 class="mb-0">
+                <a href="#" class="text-white text-decoration-none">Sarkoot</a>
+            </h1>
+        </div>
+    </aside>
     <main id="main" class="flex-grow-1 d-flex flex-column">
-        <header id="header" class="bg-white px-3">Header</header>
+        <header id="header" class="bg-white px-3 d-flex justify-content-between">
+            <div class="d-flex align-items-center">
+                <!-- <form action="">
+                    <label class="header-search d-flex mb-0">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search...">
+                    </label>
+                </form> -->
+            </div>
+            <div class="d-flex">
+                <a href="#" class="header-link d-flex justify-content-center align-items-center">
+                    <img src="dist/images/avatar/avatar.jpg" alt="Avatar" class="rounded-circle" width="32" height="32">
+                </a>
+            </div>
+        </header>
         <div id="content" class="flex-grow-1 py-3">
             <div class="container-fluid">Content</div>
         </div>
