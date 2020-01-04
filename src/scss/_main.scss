@@ -1,0 +1,18 @@
+#main {
+    -webkit-transition: all .2s;
+    -o-transition: all .2s;
+    transition: all .2s;
+}
+
+@media (min-width: 992px) {
+    #main {
+        margin-left: 260px;
+    }
+
+    .rtl {
+        #main {
+            margin-right: 260px;
+            margin-left: unset;
+        }
+    }
+}

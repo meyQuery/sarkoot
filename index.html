@@ -10,8 +10,13 @@
 
     <title>Sarkoot | سرکوت</title>
 </head>
-<body>
+<body class="d-flex flex-column">
     <aside id="aside"></aside>
+    <main id="main" class="flex-grow-1 d-flex flex-column">
+        <header id="header">Header</header>
+        <div id="content" class="flex-grow-1">Content</div>
+        <footer id="footer">Footer</footer>
+    </main>
 
     <script src="dist/vendors/jquery-3.4.1.min.js"></script>
     <script src="dist/vendors/popper.min.js"></script>
