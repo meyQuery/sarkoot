@@ -15,15 +15,3 @@
         color: #c7c7c7;
     }
 }
-
-.header-link {
-    display: block;
-    padding: 0 5px;
-    -webkit-transition: all .2s;
-    -o-transition: all .2s;
-    transition: all .2s;
-
-    &:hover {
-        background-color: rgba($color: #000000, $alpha: 0.25);
-    }
-}

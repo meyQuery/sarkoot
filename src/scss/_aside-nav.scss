@@ -1,0 +1,47 @@
+.s-nav {
+
+    .nav-link[data-toggle].collapsed:after {
+        content: "▾";
+        vertical-align: middle;
+    }
+    .nav-link[data-toggle]:not(.collapsed):after {
+        content: "▴";
+        vertical-align: middle;
+    }
+
+    .nav-link {
+        padding: .5rem;
+        font-size: .75rem;
+        color: #a5b9d0;
+        position: relative;
+
+        &:focus,
+        &:hover {
+            background-color: #a5b9d0;
+            color: #364558;
+        }
+
+        &.active {
+            background-color: #dee5ed;
+            color: #364558;
+
+            & > span {
+                font-weight: bold;
+            }
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 3px;
+                height: 100%;
+                background-color: #379ff6;
+            }
+        }
+    }
+
+    .nav {
+        background-color: rgba($color: #000000, $alpha: 0.25);
+    }
+}

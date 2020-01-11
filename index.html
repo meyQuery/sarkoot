@@ -18,7 +18,30 @@
                 <a href="#" class="text-white text-decoration-none">Sarkoot</a>
             </h1>
         </div>
+
+        <ul class="nav s-nav flex-column flex-nowrap overflow-hidden p-0">
+            <li class="nav-item">
+                <a class="nav-link text-truncate" href="#">
+                    <span class="d-none d-sm-inline">Overview</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed text-truncate" href="#submenu1" data-toggle="collapse" data-target="#submenu1">
+                    <span class="d-none d-sm-inline">Reports</span>
+                </a>
+                <div class="collapse" id="submenu1" aria-expanded="false">
+                    <ul class="flex-column nav p-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span>Orders</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
     </aside>
+
     <main id="main" class="flex-grow-1 d-flex flex-column">
         <header id="header" class="bg-white px-3 d-flex justify-content-between">
             <div class="d-flex align-items-center">
@@ -29,15 +52,17 @@
                     </label>
                 </form> -->
             </div>
-            <div class="d-flex">
-                <a href="#" class="header-link d-flex justify-content-center align-items-center">
+            <div class="d-flex align-items-center">
+                <a href="#">
                     <img src="dist/images/avatar/avatar.jpg" alt="Avatar" class="rounded-circle" width="32" height="32">
                 </a>
             </div>
         </header>
+
         <div id="content" class="flex-grow-1 py-3">
             <div class="container-fluid">Content</div>
         </div>
+
         <footer id="footer" class="bg-white d-flex justify-content-between align-items-center px-3">
             <div>
                 2020 &copy; <a href="#" class="text-dark">Sarkoot</a>
