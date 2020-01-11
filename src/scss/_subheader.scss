@@ -1,0 +1,31 @@
+.subheader-title {
+    margin: 0 1rem 0 0;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #595d6e;
+}
+
+.subheader-breadcrumbs {
+    .breadcrumb {
+        margin: 0;
+        padding: 0;
+        background-color: transparent;
+
+        .breadcrumb-item {
+            font-size: .875rem;
+            font-weight: 500;
+            color: #959cb6;
+
+            &>a {
+                color: inherit;
+            }
+
+            &+.breadcrumb-item {
+                &::before {
+                    content: "\2022";
+                    color: rgba(149, 156, 182, 0.5);
+                }
+            }
+        }
+    }
+}
