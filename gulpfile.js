@@ -20,5 +20,5 @@ exports.js = js;
 exports.css = css;
 exports.default = function() {
     watch('src/scss/**/*.scss', css);
-    watch('src/js/**/*.js', js)
+    watch('src/js/**/*.js', js);
 }

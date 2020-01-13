@@ -5,26 +5,30 @@
     color: #595d6e;
 }
 
-.subheader-breadcrumbs {
-    .breadcrumb {
-        margin: 0;
-        padding: 0;
-        background-color: transparent;
+.rtl {
+    .subheader-title {
+        margin: 0 0 0 1rem;
+    }
+}
 
-        .breadcrumb-item {
-            font-size: .875rem;
-            font-weight: 500;
-            color: #959cb6;
+.breadcrumb {
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
 
-            &>a {
-                color: inherit;
-            }
+    .breadcrumb-item {
+        // font-size: .875rem;
+        font-weight: 500;
+        color: #959cb6;
 
-            &+.breadcrumb-item {
-                &::before {
-                    content: "\2022";
-                    color: rgba(149, 156, 182, 0.5);
-                }
+        &>a {
+            color: inherit;
+        }
+
+        &+.breadcrumb-item {
+            &::before {
+                content: "\2022";
+                color: rgba(149, 156, 182, 0.5);
             }
         }
     }
