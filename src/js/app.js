@@ -1,3 +1,19 @@
+const aside = document.querySelector('#aside');
+const asideBtn = document.querySelector('#aside-btn');
+function handleAside(event) {
+    aside.classList.add('open');
+    event.stopPropagation();
+}
+asideBtn.addEventListener('click', handleAside);
+
+const mainBlock = document.querySelector('#main');
+mainBlock.addEventListener('click', function(event) {
+    if (aside.classList.contains('open')) {
+        aside.classList.remove('open');
+    }
+    event.stopPropagation();
+});
+
 am4core.ready(function () {
 
     // Themes begin
