@@ -3,15 +3,12 @@
     height: 55px;
 }
 
-.header-search {
-    input {
-        border: none;
-        outline: none;
-    }
-
-    .fa-search {
-        margin-top: 5px;
-        margin-right: 5px;
-        color: #c7c7c7;
-    }
+.avatar-placeholder {
+    min-width: 32px;
+    width: 32px;
+    min-height: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #a695e7;
+    color: #fff;
 }
