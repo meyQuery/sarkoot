@@ -1,0 +1,23 @@
+.table {
+    thead {
+        th {
+            font-size: 0.875rem;
+            font-weight: 500;
+            border-top: none;
+
+            span {
+                display: block;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+    }
+
+    tbody {
+        tr {
+            td {
+                font-size: 0.75rem;
+            }
+        }
+    }
+}
