@@ -1,12 +1,32 @@
-body[data-page="enter"] {
-    background-image: linear-gradient( 135deg, #E8D07A 10%, #5312D6 100%);
+.enter-bg {
+    position: relative;
+    background-image: url(../images/meeting.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    overflow: hidden;
 }
 
-#enter {
+#particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.25;
+}
+
+.enter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.enter-inner {
     width: 90%;
     max-width: 420px;
-    background-color: rgba($color: #fff, $alpha: 0.5);
-    border-radius: 0.25rem;
 
     .enter-logo {
         img {
@@ -16,7 +36,7 @@ body[data-page="enter"] {
     }
 
     .card {
-        background-color: transparent;
+        background-color: rgba($color: #fff, $alpha: 0.2);
     }
 
     .form-control {
