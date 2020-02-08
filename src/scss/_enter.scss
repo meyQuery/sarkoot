@@ -29,9 +29,15 @@
     max-width: 420px;
 
     .enter-logo {
+        margin-bottom: -25px;
+        position: relative;
+        z-index: 2;
+
         img {
             width: 100px;
             height: auto;
+            border-radius: 50%;
+            border: 10px solid #a03434;
         }
     }
 
@@ -40,9 +46,11 @@
     }
 
     .form-control {
+        padding: 0.75rem 1.5rem;
         background-color: rgba($color: #fff, $alpha: 0.5);
         border: none;
         transition: 0.2s;
+        height: auto;
 
         &:focus {
             background-color: rgba($color: #fff, $alpha: 0.6);
@@ -53,6 +61,7 @@
     .btn {
         background-color: rgba($color: #000000, $alpha: 0.5);
         border: none;
+        padding: 0.75rem 1.5rem;
 
         &:hover,
         &:focus {
