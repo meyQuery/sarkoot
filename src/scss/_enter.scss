@@ -1,0 +1,43 @@
+body[data-page="enter"] {
+    background-image: linear-gradient( 135deg, #E8D07A 10%, #5312D6 100%);
+}
+
+#enter {
+    width: 90%;
+    max-width: 420px;
+    background-color: rgba($color: #fff, $alpha: 0.5);
+    border-radius: 0.25rem;
+
+    .enter-logo {
+        img {
+            width: 100px;
+            height: auto;
+        }
+    }
+
+    .card {
+        background-color: transparent;
+    }
+
+    .form-control {
+        background-color: rgba($color: #fff, $alpha: 0.5);
+        border: none;
+        transition: 0.2s;
+
+        &:focus {
+            background-color: rgba($color: #fff, $alpha: 0.6);
+            box-shadow: none;
+        }
+    }
+
+    .btn {
+        background-color: rgba($color: #000000, $alpha: 0.5);
+        border: none;
+
+        &:hover,
+        &:focus {
+            background-color: rgba($color: #000000, $alpha: 0.6);
+        }
+    }
+}
+
