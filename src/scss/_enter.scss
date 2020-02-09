@@ -29,12 +29,8 @@
     max-width: 350px;
 
     .enter-logo {
-        margin-bottom: -15px;
-        position: relative;
-        z-index: 2;
-
         img {
-            width: 100px;
+            width: 80px;
             height: auto;
             border-radius: 50%;
         }
@@ -42,6 +38,10 @@
 
     .card {
         background-color: rgba($color: #fff, $alpha: 0.2);
+    }
+
+    .card-body {
+        padding: 2rem;
     }
 
     .form-control {
@@ -69,41 +69,11 @@
     }
 }
 
-.btn-google {
-    background-color: #fff;
-    border-color: #fff;
-    color: #757575;
+.btn-social {
+    background-color: rgba($color: #000000, $alpha: 0.1);
 
     &:focus,
     &:hover {
-        background-color: #fff;
-        border-color: #fff;
-        color: #757575;
-    }
-}
-
-.btn-twitter {
-    background-color: #1ab7ea;
-    border-color: #1ab7ea;
-    color: #fff;
-
-    &:focus,
-    &:hover {
-        background-color: #1ab7ea;
-        border-color: #1ab7ea;
-        color: #fff;
-    }
-}
-
-.btn-facebook {
-    background-color: #4267b2;
-    border-color: #4267b2;
-    color: #fff;
-
-    &:focus,
-    &:hover {
-        background-color: #4267b2;
-        border-color: #4267b2;
-        color: #fff;
+        background-color: rgba($color: #000000, $alpha: 0.5);
     }
 }
