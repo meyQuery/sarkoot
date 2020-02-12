@@ -15,7 +15,7 @@
     <title>Sarkoot | سرکوت</title>
 </head>
 
-<body class="d-flex flex-column">
+<body class="d-flex flex-column rtl">
     <aside id="aside">
         <div class="aside-brand d-flex justify-content-center align-items-center px-3">
             <h1 class="mb-0">
@@ -26,13 +26,13 @@
         <ul class="nav aside-nav flex-column flex-nowrap overflow-hidden p-0">
             <li class="nav-item">
                 <a class="nav-link text-truncate" href="#">
-                    <span class="d-none d-sm-inline">Overview</span>
+                    <span class="d-sm-inline">Overview</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link collapsed text-truncate" href="#submenu1" data-toggle="collapse"
                     data-target="#submenu1">
-                    <span class="d-none d-sm-inline">Reports</span>
+                    <span class="d-sm-inline">Reports</span>
                 </a>
                 <div class="collapse" id="submenu1" aria-expanded="false">
                     <ul class="flex-column nav p-0">
@@ -55,10 +55,18 @@
                 </button>
             </div>
             <div class="d-flex align-items-center">
-                <a href="#">
-                    <img src="dist/images/avatar/avatar.jpg" alt="Avatar" class="rounded-circle" width="32" height="32">
-                    <!-- <span class="avatar-placeholder d-flex justify-content-center align-items-center">S</span> -->
-                </a>
+                <div class="profile-div">
+                    <img src="dist/images/avatar/avatar.jpg" alt="Avatar" class="profile rounded-circle" width="32" height="32">
+                    <!-- <span class="profile profile-placeholder d-flex justify-content-center align-items-center">S</span> -->
+                    <div class="profile-dropdown shadow">
+                        <div class="profile-dropdown-header p-3 d-flex align-items-center">
+                            <a href="#" class="text-white text-decoration-none fs-14">Username</a>
+                        </div>
+                        <div class="profile-dropdown-body p-3">
+                            <a href="#" class="btn btn-primary btn-block">Logout</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </header>
 

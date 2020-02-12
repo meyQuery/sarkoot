@@ -2,16 +2,24 @@ const aside = document.querySelector('#aside');
 const asideBtn = document.querySelector('#aside-btn');
 function handleAside(event) {
     aside.classList.add('open');
-    event.stopPropagation();
 }
 asideBtn.addEventListener('click', handleAside);
 
-const mainBlock = document.querySelector('#main');
-mainBlock.addEventListener('click', function(event) {
-    if (aside.classList.contains('open')) {
+const profile = document.querySelector('.profile');
+const dropdown = document.querySelector('.profile-dropdown');
+
+function handleProfileClick(event) {
+    dropdown.classList.add('open');
+}
+
+profile.addEventListener('click', handleProfileClick);
+window.addEventListener('click', function(event) {
+    if (!event.target.closest('.profile-div')) {
+        dropdown.classList.remove('open');
+    }
+    if (!event.target.closest('#aside') && !event.target.closest('#aside-btn')) {
         aside.classList.remove('open');
     }
-    event.stopPropagation();
 });
 
 am4core.ready(function () {
