@@ -22,10 +22,19 @@
         opacity: 0;
         pointer-events: none;
         z-index: 999;
+        -webkit-transform: translateY(50%);
+        -ms-transform: translateY(50%);
+        transform: translateY(50%);
+        -webkit-transition: 0.2s;
+        -o-transition: 0.2s;
+        transition: 0.2s;
 
         &.open {
             opacity: 1;
             pointer-events: all;
+            -webkit-transform: translateY(0);
+            -ms-transform: translateY(0);
+            transform: translateY(0);
         }
 
         .profile-dropdown-header {
