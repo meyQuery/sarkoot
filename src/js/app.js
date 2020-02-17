@@ -102,3 +102,7 @@ am4core.ready(function () {
     columnTemplate.strokeOpacity = 1;
 
 }); // end am4core.ready()
+
+$(document).ready(function() {
+    $('.select2').select2();
+});

@@ -1,0 +1,19 @@
+.select2-container {
+    width: 100%!important;
+}
+
+.select2-container--default {
+    .select2-selection--single {
+        border: 1px solid #e2e5ec;
+        height: calc(1.5em + .75rem + 2px);
+
+        .select2-selection__rendered {
+            height: calc(1.5em + .75rem + 2px);
+            line-height: calc(1.5em + .75rem + 2px);
+        }
+
+        .select2-selection__arrow {
+            top: 6px;
+        }
+    }
+}
