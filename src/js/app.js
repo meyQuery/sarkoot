@@ -31,6 +31,8 @@ am4core.ready(function () {
     // Create chart instance
     var chart = am4core.create("chartdiv", am4charts.XYChart);
 
+    chart.rtl = true;
+
     // Add data
     chart.data = [{
         "country": "USA",

@@ -17,3 +17,8 @@
         }
     }
 }
+
+.select2-container--focus {
+    border: 1px solid #9aabff;
+    box-shadow: 0 0 0 0.2rem rgba(88, 103, 221, 0.25);
+}
