@@ -33,3 +33,19 @@
         }
     }
 }
+
+.rtl {
+    .breadcrumb {
+        .breadcrumb-item {
+            &+.breadcrumb-item {
+                padding-right: .5rem;
+                padding-left: 0;
+
+                &::before {
+                    padding-right: 0;
+                    padding-left: .5rem;
+                }
+            }
+        }
+    }
+}
