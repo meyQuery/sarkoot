@@ -10,3 +10,20 @@
 .avatar-sm {
     width: 40px;
 }
+
+.avatar-placeholder {
+    width: 64px;
+    height: 64px;
+    border-radius: .25rem;
+    vertical-align: middle;
+    font-size: 2rem;
+    background-color: #a695e7;
+    color: #fff;
+    line-height: 64px;
+
+    &.avatar-placeholder-sm {
+        width: 40px;
+        height: 40px;
+        font-size: 1.25rem;
+    }
+}
