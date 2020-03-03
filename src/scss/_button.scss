@@ -1,0 +1,10 @@
+.btn {
+	&.btn-clear {
+		background-color: transparent;
+		box-shadow: none;
+
+		&:focus {
+			box-shadow: none;
+		}
+	}
+}
