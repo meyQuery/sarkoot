@@ -1,0 +1,29 @@
+.form-group-m {
+    position: relative;
+
+    label {
+        position: absolute;
+        top: 10px;
+        right: 0;
+        margin-bottom: 0;
+        transition: all .2s;
+    }
+
+    .form-control {
+        padding: 0;
+        border-radius: 0;
+        border: none;
+        border-bottom: 1px solid #ced4da;
+
+        &:focus {
+            box-shadow: none;
+            border-color: #5578eb;
+
+            &+label {
+                top: -18px;
+                font-size: .875rem;
+                color: #5578eb;
+            }
+        }
+    }
+}
