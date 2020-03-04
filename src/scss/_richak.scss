@@ -13,36 +13,187 @@
         -webkit-box-align: center;
         -ms-flex-align: center;
         align-items: center;
-        border: 2px solid #bbb;
+        border: 2px solid transparent;
         margin: 0 0 1rem 1rem;
-        width: 110px;
-        height: 140px;
-        color: #bbb;
+        width: 75px;
+        height: 110px;
         -webkit-transition: all .2s;
         -o-transition: all .2s;
         transition: all .2s;
-    }
+        cursor: pointer;
+        border-radius: .25rem;
+        font-size: .875rem;
 
-    .richak-icon {
-        font-size: 3rem;
-        margin-bottom: .5rem;
-        color: #bbb;
-        -webkit-transition: all .2s;
-        -o-transition: all .2s;
-        transition: all .2s;
+        &:focus, &:hover {
+            transform: scale(.95);
+        }
+
+        .richak-icon {
+            font-size: 2.5rem;
+            margin-bottom: .5rem;
+            color: inherit;
+            -webkit-transition: all .2s;
+            -o-transition: all .2s;
+            transition: all .2s;
+        }
     }
 
     input {
         opacity: 0;
         width: 0;
         height: 0;
+    }
 
-        &:checked + label {
-            border-color: #545b62;
-            color: #545b62;
+
+    &.richak-sm {
+        label {
+            width: 55px;
+            height: 80px;
+            font-size: .75rem;
 
             .richak-icon {
-                color: #545b62;
+                font-size: 1.75rem;
+            }
+        }
+    }
+
+    &.richak-lg {
+        label {
+            width: 90px;
+            height: 140px;
+            font-size: 1rem;
+
+            .richak-icon {
+                font-size: 2.5rem;
+            }
+        }
+    }
+
+    &.richak-xl {
+        label {
+            width: 115px;
+            height: 170px;
+            font-size: 1.25rem;
+
+            .richak-icon {
+                font-size: 3.5rem;
+            }
+        }
+    }
+
+    &.richak-primary {
+        label {
+            border-color: #5867dd;
+            color: #5867dd;
+        }
+
+        input {
+            &:checked + label {
+                border-color: #384ad7;
+                color: #384ad7;
+                background-color: rgba(93,120,255,.1);
+            }
+        }
+    }
+
+    &.richak-secondary {
+        label {
+            border-color: #e1e1ef;
+            color: #e1e1ef;
+        }
+
+        input {
+            &:checked + label {
+                border-color: #c8c8e2;
+                color: #c8c8e2;
+            }
+        }
+    }
+
+    &.richak-success {
+        label {
+            border-color: #1dc9b7;
+            color: #1dc9b7;
+        }
+
+        input {
+            &:checked + label {
+                border-color: #18a899;
+                color: #18a899;
+                background-color: rgba(29,201,183,.1);
+            }
+        }
+    }
+
+    &.richak-danger {
+        label {
+            border-color: #fd397a;
+            color: #fd397a;
+        }
+
+        input {
+            &:checked + label {
+                border-color: #fd1361;
+                color: #fd1361;
+                background-color: rgba(253,57,122,.1);
+            }
+        }
+    }
+
+    &.richak-warning {
+        label {
+            border-color: #ffb822;
+            color: #ffb822;
+        }
+
+        input {
+            &:checked + label {
+                border-color: #fbaa00;
+                color: #fbaa00;
+                background-color: rgba(255,184,34,.1);
+            }
+        }
+    }
+
+    &.richak-info {
+        label {
+            border-color: #5578eb;
+            color: #5578eb;
+        }
+
+        input {
+            &:checked + label {
+                border-color: #335de7;
+                color: #335de7;
+            }
+        }
+    }
+
+    &.richak-light {
+        label {
+            border-color: #f8f9fa;
+            color: #f8f9fa;
+        }
+
+        input {
+            &:checked + label {
+                border-color: #e2e6ea;
+                color: #e2e6ea;
+            }
+        }
+    }
+
+    &.richak-dark {
+        label {
+            border-color: #343a40;
+            color: #343a40;
+        }
+
+        input {
+            &:checked + label {
+                border-color: #23272b;
+                color: #23272b;
+                background-color: rgba(100,92,161,.1);
             }
         }
     }
