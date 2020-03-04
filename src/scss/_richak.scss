@@ -1,0 +1,49 @@
+.richak {
+    label {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        border: 2px solid #bbb;
+        margin: 0 0 1rem 1rem;
+        width: 110px;
+        height: 140px;
+        color: #bbb;
+        -webkit-transition: all .2s;
+        -o-transition: all .2s;
+        transition: all .2s;
+    }
+
+    .richak-icon {
+        font-size: 3rem;
+        margin-bottom: .5rem;
+        color: #bbb;
+        -webkit-transition: all .2s;
+        -o-transition: all .2s;
+        transition: all .2s;
+    }
+
+    input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+
+        &:checked + label {
+            border-color: #545b62;
+            color: #545b62;
+
+            .richak-icon {
+                color: #545b62;
+            }
+        }
+    }
+}
