@@ -35,6 +35,18 @@
         opacity: 0;
         width: 0;
         height: 0;
+
+        &:disabled + label {
+            border-color: #eee;
+            color: #eee;
+            cursor: not-allowed;
+
+            &:hover {
+                border-color: #eee;
+                color: #eee;
+                background-color: transparent;
+            }
+        }
     }
 
     &.richak-xs {
@@ -87,11 +99,12 @@
 
     &.richak-primary {
         label {
-            border-color: #5867dd;
-            color: #5867dd;
+            border-color: rgba(88, 103, 221, .75);
+            color: rgba(88, 103, 221, .75);
 
             &:hover {
-                background-color: rgba(93,120,255,.1);
+                border-color: #384ad7;
+                color: #384ad7;
             }
         }
 
@@ -99,6 +112,7 @@
             &:checked + label {
                 border-color: #384ad7;
                 color: #384ad7;
+                background-color: rgba(93,120,255,.1);
             }
         }
     }
@@ -107,6 +121,11 @@
         label {
             border-color: #d2d2d2;
             color: #d2d2d2;
+
+            &:hover {
+                border-color: #666;
+                color: #666;
+            }
         }
 
         input {
@@ -120,11 +139,12 @@
 
     &.richak-success {
         label {
-            border-color: #1dc9b7;
-            color: #1dc9b7;
+            border-color: rgba(29, 201, 183, .75);
+            color: rgba(29, 201, 183, .75);
 
             &:hover {
-                background-color: rgba(29,201,183,.1);
+                border-color: #18a899;
+                color: #18a899;
             }
         }
 
@@ -132,17 +152,19 @@
             &:checked + label {
                 border-color: #18a899;
                 color: #18a899;
+                background-color: rgba(29,201,183,.1);
             }
         }
     }
 
     &.richak-danger {
         label {
-            border-color: #fd397a;
-            color: #fd397a;
+            border-color: rgba(253, 57, 122, .75);
+            color: rgba(253, 57, 122, .75);
 
             &:hover {
-                background-color: rgba(253,57,122,.1);
+                border-color: #fd1361;
+                color: #fd1361;
             }
         }
 
@@ -150,17 +172,19 @@
             &:checked + label {
                 border-color: #fd1361;
                 color: #fd1361;
+                background-color: rgba(253,57,122,.1);
             }
         }
     }
 
     &.richak-warning {
         label {
-            border-color: #ffb822;
-            color: #ffb822;
+            border-color: rgba(255, 184, 34, .75);
+            color: rgba(255, 184, 34, .75);
 
             &:hover {
-                background-color: rgba(255,184,34,.1);
+                border-color: #fbaa00;
+                color: #fbaa00;
             }
         }
 
@@ -168,20 +192,7 @@
             &:checked + label {
                 border-color: #fbaa00;
                 color: #fbaa00;
-            }
-        }
-    }
-
-    &.richak-info {
-        label {
-            border-color: #5578eb;
-            color: #5578eb;
-        }
-
-        input {
-            &:checked + label {
-                border-color: #335de7;
-                color: #335de7;
+                background-color: rgba(255,184,34,.1);
             }
         }
     }
@@ -202,11 +213,12 @@
 
     &.richak-dark {
         label {
-            border-color: #343a40;
-            color: #343a40;
+            border-color: rgba(52, 58, 64, .75);
+            color: rgba(52, 58, 64, .75);
 
             &:hover {
-                background-color: rgba(100,92,161,.1);
+                border-color: #23272b;
+                color: #23272b;
             }
         }
 
@@ -214,6 +226,7 @@
             &:checked + label {
                 border-color: #23272b;
                 color: #23272b;
+                background-color: rgba(100,92,161,.1);
             }
         }
     }
