@@ -40,4 +40,10 @@
     padding-right: .75rem;
     padding-left: calc(1.5em + .75rem);
     background-position: left calc(.375em + .1875rem) center;
+
+    &:focus {
+        & + label {
+            color: #c82333;
+        }
+    }
 }
