@@ -1,4 +1,6 @@
 .richak {
+    margin: 0 0 1rem 1rem;
+
     label {
         display: -webkit-box;
         display: -ms-flexbox;
@@ -14,7 +16,6 @@
         -ms-flex-align: center;
         align-items: center;
         border: 2px solid transparent;
-        margin: 0 0 1rem 1rem;
         width: 90px;
         height: 110px;
         -webkit-transition: all .2s;
@@ -23,6 +24,7 @@
         cursor: pointer;
         border-radius: .25rem;
         font-size: .875rem;
+        margin: 0;
 
         .richak-icon {
             font-size: 2rem;
@@ -35,6 +37,7 @@
         opacity: 0;
         width: 0;
         height: 0;
+        position: absolute;
 
         &:disabled + label {
             border-color: #eee;
@@ -50,6 +53,9 @@
     }
 
     &.richak-xs {
+        width: 45px;
+        height: 50px;
+
         label {
             width: 45px;
             height: 50px;
@@ -62,6 +68,9 @@
     }
 
     &.richak-sm {
+        width: 70px;
+        height: 80px;
+
         label {
             width: 70px;
             height: 80px;
@@ -74,6 +83,9 @@
     }
 
     &.richak-lg {
+        width: 110px;
+        height: 140px;
+
         label {
             width: 110px;
             height: 140px;
@@ -86,6 +98,9 @@
     }
 
     &.richak-xl {
+        width: 130px;
+        height: 170px;
+
         label {
             width: 130px;
             height: 170px;
