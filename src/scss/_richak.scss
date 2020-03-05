@@ -15,7 +15,7 @@
         -webkit-box-align: center;
         -ms-flex-align: center;
         align-items: center;
-        border: 2px solid transparent;
+        border: 1px solid transparent;
         width: 90px;
         height: 110px;
         -webkit-transition: all .2s;
@@ -114,8 +114,8 @@
 
     &.richak-primary {
         label {
-            border-color: rgba(88, 103, 221, .75);
-            color: rgba(88, 103, 221, .75);
+            border-color: rgba(88, 103, 221, .5);
+            color: rgba(88, 103, 221, .5);
 
             &:hover {
                 border-color: #384ad7;
@@ -154,8 +154,8 @@
 
     &.richak-success {
         label {
-            border-color: rgba(29, 201, 183, .75);
-            color: rgba(29, 201, 183, .75);
+            border-color: rgba(29, 201, 183, .5);
+            color: rgba(29, 201, 183, .5);
 
             &:hover {
                 border-color: #18a899;
@@ -174,8 +174,8 @@
 
     &.richak-danger {
         label {
-            border-color: rgba(253, 57, 122, .75);
-            color: rgba(253, 57, 122, .75);
+            border-color: rgba(253, 57, 122, .5);
+            color: rgba(253, 57, 122, .5);
 
             &:hover {
                 border-color: #fd1361;
@@ -194,8 +194,8 @@
 
     &.richak-warning {
         label {
-            border-color: rgba(255, 184, 34, .75);
-            color: rgba(255, 184, 34, .75);
+            border-color: rgba(255, 184, 34, .5);
+            color: rgba(255, 184, 34, .5);
 
             &:hover {
                 border-color: #fbaa00;
@@ -228,8 +228,8 @@
 
     &.richak-dark {
         label {
-            border-color: rgba(52, 58, 64, .75);
-            color: rgba(52, 58, 64, .75);
+            border-color: rgba(52, 58, 64, .5);
+            color: rgba(52, 58, 64, .5);
 
             &:hover {
                 border-color: #23272b;
