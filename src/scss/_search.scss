@@ -1,0 +1,15 @@
+.search-container {
+    position: relative;
+
+    input {
+        padding: .25rem 1.75rem .25rem 1.25rem;
+        border: none;
+        outline: none;
+    }
+
+    label {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+    }
+}
