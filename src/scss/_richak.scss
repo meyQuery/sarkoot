@@ -24,17 +24,17 @@
         border-radius: .25rem;
         font-size: .875rem;
 
-        &:focus, &:hover {
-            transform: scale(.95);
-        }
+        // &:focus, &:hover {
+        //     transform: scale(.95);
+        // }
 
         .richak-icon {
             font-size: 2.5rem;
             margin-bottom: .5rem;
             color: inherit;
-            -webkit-transition: all .2s;
-            -o-transition: all .2s;
-            transition: all .2s;
+            // -webkit-transition: all .2s;
+            // -o-transition: all .2s;
+            // transition: all .2s;
         }
     }
 
@@ -42,6 +42,10 @@
         opacity: 0;
         width: 0;
         height: 0;
+
+        &:checked + label {
+            transform: scale(1.1);
+        }
     }
 
 
