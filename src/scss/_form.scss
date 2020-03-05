@@ -34,3 +34,10 @@
         }
     }
 }
+
+.form-control.is-invalid,
+.was-validated .form-control:invalid {
+    padding-right: .75rem;
+    padding-left: calc(1.5em + .75rem);
+    background-position: left calc(.375em + .1875rem) center;
+}
