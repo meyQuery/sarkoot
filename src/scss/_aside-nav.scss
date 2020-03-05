@@ -6,6 +6,10 @@
         content: "▴";
     }
 
+    .collapse {
+        background-color: rgba($color: #eee, $alpha: .1);
+    }
+
     .nav-link {
         padding: 1rem;
         font-size: .75rem;
