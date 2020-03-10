@@ -104,6 +104,14 @@
 		}
 		else
 		{
+			try {
+				options.replace
+					? history.replaceState(JSON.parse(JSON.stringify(options)), options.title, ajax_send_url || options.url)
+					: history.pushState(JSON.parse(JSON.stringify(options)), options.title, ajax_send_url || options.url);
+			}
+			catch (e) {
+				console.error(e);
+			}
 			$(document).trigger('statio:global:done', [options.context]);
 			options.context.trigger('statio:done');
 		}
@@ -125,12 +133,21 @@
 				{
 					if (options.type != 'render') {
 						try {
+							options.response = response;
 							options.replace
-								? history.replaceState(options.data, options.title, ajax_send_url || options.url)
-								: history.pushState(options.data, options.title, ajax_send_url || options.url);
+								? history.replaceState(JSON.parse(JSON.stringify(options)), options.title, ajax_send_url || options.url)
+								: history.pushState(JSON.parse(JSON.stringify(options)), options.title, ajax_send_url || options.url);
 						}
 						catch (e) {
-							console.error(e);
+							try{
+								options.replace
+									? history.replaceState(options.data, options.title, ajax_send_url || options.url)
+									: history.pushState(options.data, options.title, ajax_send_url || options.url);
+
+							}
+							catch (e){
+								console.error(e);
+							}
 						}
 					}
 					$(document).trigger('statio:global:success', [options.context, response.data, response.body, jqXHR]);

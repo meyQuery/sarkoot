@@ -2,9 +2,9 @@
 	function jresp(context, res)
 	{
 		context.trigger('jresp', [res]);
-		if(res.message)
+		if (res.message && !context.is('.d-notification'))
 		{
-			if (toastr)
+			if (window.toastr)
 			{
 				var toast = toastr[res.is_ok ? 'success' : 'error'](res.message_text || res.message, undefined, {
 					"closeButton": true,
@@ -12,7 +12,7 @@
 					"positionClass": "toast-bottom-right",
 				});
 			}
-			else if (iziToast)
+			else if (window.iziToast)
 			{
 				iziToast[res.is_ok ? 'success' : 'error']({ message: res.message_text || res.message});
 			}
