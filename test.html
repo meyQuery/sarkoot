@@ -16,59 +16,59 @@
 </head>
 
 <body class="rtl pt-5">
-    <div class="test-card shadow-sm mx-auto">
-        <div class="test-card-body">
-            <div class="test-card-title">دستور اجرای این آزمون را به‌خوبی فهمیدم</div>
-            <div class="mb-5">
-                <div class="radio">
-                    <input type="radio" name="a" id="a">
-                    <label for="a">
-                        <span data-number="۱"></span>
-                        بله
-                    </label>
+    <div class="container">
+        <div class="card test-card shadow-sm mb-3">
+            <div class="card-body">
+                <div class="card-title">دستور اجرای این آزمون را به‌خوبی فهمیدم</div>
+                <div class="mb-5">
+                    <div class="radio">
+                        <input type="radio" name="a" id="a">
+                        <label for="a">
+                            <span data-number="۱"></span>
+                            بله
+                        </label>
+                    </div>
+
+                    <div class="radio">
+                        <input type="radio" name="a" id="b">
+                        <label for="b">
+                            <span data-number="۲"></span>
+                            گاهی
+                        </label>
+                    </div>
+
+                    <div class="radio">
+                        <input type="radio" name="a" id="c">
+                        <label for="c">
+                            <span data-number="۳"></span>
+                            نه
+                        </label>
+                    </div>
                 </div>
 
-                <div class="radio">
-                    <input type="radio" name="a" id="b">
-                    <label for="b">
-                        <span data-number="۲"></span>
-                        گاهی
-                    </label>
+                <div class="progress test-progress mb-3">
+                    <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
 
-                <div class="radio">
-                    <input type="radio" name="a" id="c">
-                    <label for="c">
-                        <span data-number="۳"></span>
-                        نه
-                    </label>
-                </div>
-            </div>
+                <div class="d-flex justify-content-between align-items-baseline">
+                    <div class="d-flex">
+                        <span class="font-weight-bold">۱</span>
+                        <span class="px-1">از</span>
+                        <span class="font-weight-bold">۱۸۷</span>
+                    </div>
 
-            <div class="progress test-progress mb-3">
-                <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-
-            <div class="d-flex justify-content-between align-items-baseline">
-                <div class="d-flex">
-                    <span class="font-weight-bold">۱</span>
-                    <span class="px-1">از</span>
-                    <span class="font-weight-bold">۱۸۷</span>
-                </div>
-
-                <div>
-                    <a href="#" class="btn btn-sm btn-light" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
-                        <i class="fal fa-chevron-right"></i>
-                    </a>
-
-                    <button class="btn btn-sm btn-secondary">اتمام</button>
-
-                    <a href="#" class="btn btn-sm btn-light" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
-                        <i class="fal fa-chevron-left"></i>
-                    </a>
+                    <div>
+                        <a href="#" class="btn btn-sm btn-light" style="width: 50px;">
+                            <i class="far fa-chevron-right"></i>
+                        </a>
+                        <a href="#" class="btn btn-sm btn-light" style="width: 50px;">
+                            <i class="far fa-chevron-left"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="alert alert-warning" role="alert">در صورت قطع ارتباط با سرور می‌توانید تست را تا آخر ادامه داده و نتیجه را ذخیره کنید.</div>
     </div>
 
     <script src="dist/vendors/jquery-3.4.1.min.js"></script>
