@@ -1,8 +1,17 @@
 .test-card {
     .card-title {
-        font-size: 2rem;
-        margin-bottom: 3rem;
+        font-size: 1.25rem;
+        margin-bottom: 2rem;
         font-weight: 300;
+    }
+}
+
+@media (min-width: 991px) {
+    .test-card {
+        .card-title {
+            font-size: 2rem;
+            margin-bottom: 3rem;
+        }
     }
 }
 
