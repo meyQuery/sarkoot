@@ -1,0 +1,83 @@
+.test-card {
+    width: 90%;
+    max-width: 900px;
+    background-color: #fff;
+    border-radius: .25rem;
+    overflow: hidden;
+}
+
+.test-card-body {
+    padding: 1.25rem;
+}
+
+.test-card-title {
+    font-size: 2rem;
+    font-weight: 200;
+    margin-bottom: 3rem;
+}
+
+.radio {
+    margin-bottom: 1rem;
+
+    input {
+        width: 0;
+        height: 0;
+        position: absolute;
+
+        &:checked {
+            & + label {
+                span {
+                    background-color: #f5f5f5;
+
+                    &::before {
+                        content: attr(data-number);
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+
+    label {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        margin: 0;
+
+        span {
+            width: 25px;
+            height: 25px;
+            background-color: #eee;
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: .5rem;
+            -webkit-transition: all .2s;
+            -o-transition: all .2s;
+            transition: all .2s;
+            position: relative;
+            text-align: center;
+
+            &::before {
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                right: 0;
+                border-radius: 50%;
+                border: 2px solid #5867dd;
+                opacity: 0;
+                -webkit-transition: all .2s;
+                -o-transition: all .2s;
+                transition: all .2s;
+                font-size: .75rem;
+                line-height: 25px;
+            }
+        }
+    }
+}
+
+.test-progress {
+    height: 5px;
+    border-radius: 0;
+}
