@@ -108,3 +108,19 @@ am4core.ready(function () {
 $(document).ready(function() {
     $('.select2').select2();
 });
+
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+            $(input).next('label').children('img').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+$('.input-avatar').change(function() {
+    readURL(this);
+});

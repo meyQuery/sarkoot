@@ -1,3 +1,11 @@
+.hide-input {
+    width: 0;
+    height: 0;
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+}
+
 .form-group-m {
     position: relative;
 }
