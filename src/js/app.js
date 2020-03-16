@@ -3,7 +3,10 @@ const asideBtn = document.querySelector('#aside-btn');
 function handleAside(event) {
     aside.classList.add('open');
 }
-asideBtn.addEventListener('click', handleAside);
+if (asideBtn)
+{
+    asideBtn.addEventListener('click', handleAside);
+}
 
 const profile = document.querySelector('.profile');
 const dropdown = document.querySelector('.profile-dropdown');
