@@ -9,21 +9,25 @@ if (asideBtn)
 }
 
 const profile = document.querySelector('.profile');
-const dropdown = document.querySelector('.profile-dropdown');
 
-function handleProfileClick(event) {
-    dropdown.classList.add('open');
+if (profile)
+{
+    const dropdown = document.querySelector('.profile-dropdown');
+
+    function handleProfileClick(event) {
+        dropdown.classList.add('open');
+    }
+    profile.addEventListener('click', handleProfileClick);
+    window.addEventListener('click', function(event) {
+        if (!event.target.closest('.profile-div')) {
+            dropdown.classList.remove('open');
+        }
+        if (!event.target.closest('#aside') && !event.target.closest('#aside-btn')) {
+            aside.classList.remove('open');
+        }
+    });
 }
 
-profile.addEventListener('click', handleProfileClick);
-window.addEventListener('click', function(event) {
-    if (!event.target.closest('.profile-div')) {
-        dropdown.classList.remove('open');
-    }
-    if (!event.target.closest('#aside') && !event.target.closest('#aside-btn')) {
-        aside.classList.remove('open');
-    }
-});
 
 am4core.ready(function () {
 
