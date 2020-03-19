@@ -28,7 +28,7 @@ if (profile)
     });
 }
 
-if (am4core)
+if (window.am4core)
 {
     am4core.ready(function () {
 
@@ -115,7 +115,10 @@ if (am4core)
 }
 
 $(document).ready(function() {
-    $('.select2').select2();
+    if ($.fn.select2)
+    {
+        $('.select2').select2();
+    }
 });
 
 function readURL(input) {
