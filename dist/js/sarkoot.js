@@ -1412,8 +1412,16 @@ $(document).on('statio:global:renderResponse', function (event, base, context) {
 			$('.invalid-feedback', this).remove();
 			if (d.errors) {
 				for (var id in d.errors) {
-					$('#' + id + ', [data-alias~=' + id + ']').addClass('is-invalid');
-					$('<div class="invalid-feedback">' + d.errors[id][0] + '</div>').insertAfter($('#' + id + ', [data-alias~=' + id + ']'));
+					var elementBase = $('#' + id + ':not(.hide-input), [data-alias~=' + id + ']');
+					elementBase.addClass('is-invalid');
+					if (elementBase.is('.form-control-m'))
+					{
+						$('<div class="invalid-feedback">' + d.errors[id][0] + '</div>').insertAfter(elementBase.next('label'));
+					}
+					else
+					{
+						$('<div class="invalid-feedback">' + d.errors[id][0] + '</div>').insertAfter(elementBase);
+					}
 				}
 			}
 		});
