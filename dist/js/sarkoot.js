@@ -1390,6 +1390,9 @@ $(document).ready(function () {
 });
 $(document).on('statio:global:renderResponse', function (event, base, context) {
 	base.each(function () {
+		$('.dropdown-menu.keep-open', this).on('click', function (event) {
+			event.stopPropagation();
+		});
 		$('[data-Lijax], .lijax', this).each(function () {
 			new Lijax(this);
 		});
