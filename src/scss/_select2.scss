@@ -3,12 +3,14 @@
 }
 
 .select2-container--default {
-    .select2-selection--single {
+    .select2-selection {
         border: 1px solid #e2e5ec;
-        height: 55px;
+        min-height: 55px;
+        height: inherit;
 
         .select2-selection__rendered{
             padding: 1.4rem .75rem .375rem !important;
+            line-height: inherit;
         }
 
         .select2-selection__arrow {
@@ -39,4 +41,23 @@
         font-size: 10px;
         color: #5578eb;
     }
+}
+
+.select2-selection__clear{
+    margin-left: 0.5rem;
+    font-size: 1.4rem;
+}
+.select2-selection__choice
+{
+    display: flex;
+    padding: .25em .5em !important;
+    font-size: .75em;
+    font-weight: 500;
+    line-height: 1;
+    text-align: right;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25rem;
+    color: #212529;
+    background-color: #f8f9fa !important;
 }

@@ -1433,16 +1433,12 @@ $(document).on('statio:global:renderResponse', function (event, base, context) {
 				allowClear: $(this).is('[data-allowClear]') || $(this).is('.has-clear'),
 				dir: "rtl",
 				tags: $(this).is('.tag-type'),
-				templateResult: $(this).is('[data-type]') ? window['select2' + $(this).attr('data-type')] : undefined,
+				templateResult: $(this).is('[data-template]') ? window['select2result_' + $(this).attr('data-template')] : undefined,
+				templateSelection: $(this).is('[data-template]') ? window['select2result_' + $(this).attr('data-template')] : undefined,
 				dropdownParent: $('#' + $(this).attr('data-dropdownParent')).length ? $('#' + $(this).attr('data-dropdownParent')) : undefined
 			};
-			$(this).attr('data-mr-value', $('[name=' + $(this).attr('data-multi-round') + ']').val());
-			$('[name=' + $(this).attr('data-multi-round') + ']').remove();
-			if (options.allowClear) {
-				options.placeholder = {};
-				options.placeholder.text = $('option', this).first().text();
-				options.placeholder.id = $('option', this).first().attr('value');
-			}
+			options.placeholder = {};
+			options.placeholder.text = '...';
 			if ($(this).is('[data-url]')) {
 				var title = $(this).attr('data-title') || 'title';
 				var _self = this;
@@ -1496,11 +1492,11 @@ $(document).on('statio:global:renderResponse', function (event, base, context) {
 	});
 });
 
-function select2users(data, option)
+function select2result_users(data, option)
 {
 	if (data.all)
 	{
-		var span = $('<div class="d-flex align-items-center fs-12"><span class="media media-sm media-primary"><img alt="A"></span><div class="p-2"></div></div>');
+		var span = $('<div class="d-flex align-items-center fs-12 d-inline-block"><span class="media media-sm media-primary"><img alt="A"></span><div class="pr-1"><div class="font-weight-bold data-name"></div><div class="fs-10 data-id"></div></div></div>');
 		if (data.all.avatar.tiny || data.all.avatar.small)
 		{
 			var avatar = data.all.avatar.tiny || data.all.avatar.small;
@@ -1511,7 +1507,8 @@ function select2users(data, option)
 			$('img', span).remove();
 			$('.media', span).html('<span>' + (data.all.name ? data.all.name.substr(0, 1) : 'IR')   + '</span>');
 		}
-		$('div', span).html(data.all.name || data.all.id);
+		$('div.data-name', span).html(data.all.name || 'بی‌نام');
+		$('div.data-id', span).html(data.all.id);
 		return span;
 	}
 	return data.text;
