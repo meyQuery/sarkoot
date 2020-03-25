@@ -132,7 +132,3 @@ function readURL(input) {
         reader.readAsDataURL(input.files[0]);
     }
   }
-
-$('.input-avatar').change(function() {
-    readURL(this);
-});

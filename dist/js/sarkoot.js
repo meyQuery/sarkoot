@@ -872,10 +872,6 @@ function readURL(input) {
     }
   }
 
-$('.input-avatar').change(function() {
-    readURL(this);
-});
-
 var datepicker = function (elementID, opt) {
 
     // check arguments
@@ -1390,6 +1386,9 @@ $(document).ready(function () {
 });
 $(document).on('statio:global:renderResponse', function (event, base, context) {
 	base.each(function () {
+		$('.input-avatar', this).change(function () {
+			readURL(this);
+		});
 		$('.dropdown-menu.keep-open', this).on('click', function (event) {
 			event.stopPropagation();
 		});
@@ -1434,6 +1433,7 @@ $(document).on('statio:global:renderResponse', function (event, base, context) {
 				allowClear: $(this).is('[data-allowClear]') || $(this).is('.has-clear'),
 				dir: "rtl",
 				tags: $(this).is('.tag-type'),
+				templateResult: $(this).is('[data-type]') ? window['select2' + $(this).attr('data-type')] : undefined,
 				dropdownParent: $('#' + $(this).attr('data-dropdownParent')).length ? $('#' + $(this).attr('data-dropdownParent')) : undefined
 			};
 			$(this).attr('data-mr-value', $('[name=' + $(this).attr('data-multi-round') + ']').val());
@@ -1495,6 +1495,27 @@ $(document).on('statio:global:renderResponse', function (event, base, context) {
 		});
 	});
 });
+
+function select2users(data, option)
+{
+	if (data.all)
+	{
+		var span = $('<div class="d-flex align-items-center fs-12"><span class="media media-sm media-primary"><img alt="A"></span><div class="p-2"></div></div>');
+		if (data.all.avatar.tiny || data.all.avatar.small)
+		{
+			var avatar = data.all.avatar.tiny || data.all.avatar.small;
+			$('img', span).attr('src', avatar.url);
+		}
+		else
+		{
+			$('img', span).remove();
+			$('.media', span).html('<span>' + (data.all.name ? data.all.name.substr(0, 1) : 'IR')   + '</span>');
+		}
+		$('div', span).html(data.all.name || data.all.id);
+		return span;
+	}
+	return data.text;
+}
 function responsive_menu() {
     $('#menu').removeClass('d-none').addClass('d-flex');
     // $('#desktop').removeClass('d-none');
