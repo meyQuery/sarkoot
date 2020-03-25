@@ -7,9 +7,8 @@
         border: 1px solid #e2e5ec;
         height: 55px;
 
-        .select2-selection__rendered {
-            height: 55px;
-            line-height: 55px;
+        .select2-selection__rendered{
+            padding: 1.4rem .75rem .375rem !important;
         }
 
         .select2-selection__arrow {
@@ -21,4 +20,23 @@
 .select2-container--focus {
     border: 1px solid #9aabff;
     box-shadow: 0 0 0 0.2rem rgba(88, 103, 221, 0.25);
+}
+
+.form-control-m {
+    & + span.select2 + label {
+        position: absolute;
+        margin: 0;
+    }
+    &:not(:placeholder-shown) + span.select2:not(.select2-container--open) + label {
+        top: 6px;
+        right: 12px;
+        font-size: 10px;
+        color: #888;
+    }
+    & + span.select2-container--open + label {
+        top: 6px;
+        right: 12px;
+        font-size: 10px;
+        color: #5578eb;
+    }
 }
