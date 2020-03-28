@@ -63,7 +63,7 @@ $(document).on('statio:global:renderResponse', function (event, base, context) {
 				dropdownParent: $('#' + $(this).attr('data-dropdownParent')).length ? $('#' + $(this).attr('data-dropdownParent')) : undefined
 			};
 			options.placeholder = {};
-			options.placeholder.text = '...';
+			options.placeholder.text = $(this).attr('data-placeholder') || '...';
 			if ($(this).is('[data-url]')) {
 				var title = $(this).attr('data-title') || 'title';
 				var _self = this;
