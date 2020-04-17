@@ -1,111 +1,120 @@
-    .media {
-        display: -webkit-inline-box;
-        display: -ms-inline-flexbox;
-        display: inline-flex;
-        overflow: hidden;
-        border-radius: .25rem;
-        text-decoration: none!important;
+.media {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    // overflow: hidden;
+    border-radius: .25rem;
+    text-decoration: none!important;
+    position: relative;
 
+    img {
+        width: 100%;
+        max-width: 50px;
+        height: 50px;
+        border-radius: 4px;
+    }
+
+    span {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        width: 50px;
+        height: 50px;
+        border-radius: 4px;
+    }
+
+    &.media-success {
+        span {
+            background: rgba(29, 201, 183, .1);
+            color: #1dc9b7;
+        }
+    }
+
+    &.media-danger {
+        span {
+            background: rgba(253,57,122,.1);
+            color: #fd397a;
+        }
+    }
+
+    &.media-warning {
+        span {
+            background: rgba(255,184,34,.1);
+            color: #ffb822;
+        }
+    }
+
+    &.media-info {
+        span {
+            background: rgba(85,120,235,.1);
+            color: #5578eb;
+        }
+    }
+
+    &.media-dark {
+        span {
+            background: rgba(100,92,161,.1);
+            color: #645ca1;
+        }
+    }
+
+    &.media-primary {
+        span {
+            background: rgba(93,120,255,.1);
+            color: #5d78ff;
+        }
+    }
+
+    &.media-sm {
         img {
-            width: 100%;
-            max-width: 50px;
-            height: 50px;
-            border-radius: 4px;
+            max-width: 30px;
+            height: 30px;
         }
 
         span {
-            display: -webkit-box;
-            display: -ms-flexbox;
-            display: flex;
-            -webkit-box-pack: center;
-            -ms-flex-pack: center;
-            justify-content: center;
-            -webkit-box-align: center;
-            -ms-flex-align: center;
-            align-items: center;
-            width: 50px;
-            height: 50px;
-            border-radius: 4px;
-        }
-
-        &.media-success {
-            span {
-                background: rgba(29, 201, 183, .1);
-                color: #1dc9b7;
-            }
-        }
-
-        &.media-danger {
-            span {
-                background: rgba(253,57,122,.1);
-                color: #fd397a;
-            }
-        }
-
-        &.media-warning {
-            span {
-                background: rgba(255,184,34,.1);
-                color: #ffb822;
-            }
-        }
-
-        &.media-info {
-            span {
-                background: rgba(85,120,235,.1);
-                color: #5578eb;
-            }
-        }
-
-        &.media-dark {
-            span {
-                background: rgba(100,92,161,.1);
-                color: #645ca1;
-            }
-        }
-
-        &.media-primary {
-            span {
-                background: rgba(93,120,255,.1);
-                color: #5d78ff;
-            }
-        }
-
-        &.media-sm {
-            img {
-                max-width: 30px;
-                height: 30px;
-            }
-
-            span {
-                width: 30px;
-                height: 30px;
-                font-size: .9rem;
-            }
-        }
-
-        &.media-lg {
-            img {
-                max-width: 65px;
-                height: 65px;
-            }
-
-            span {
-                width: 65px;
-                height: 65px;
-                font-size: 1.3rem;
-            }
-        }
-
-        &.media-xl {
-            img {
-                max-width: 80px;
-                height: 80px;
-            }
-
-            span {
-                width: 80px;
-                height: 80px;
-                font-size: 1.7rem;
-            }
+            width: 30px;
+            height: 30px;
+            font-size: .9rem;
         }
     }
+
+    &.media-lg {
+        img {
+            max-width: 65px;
+            height: 65px;
+        }
+
+        span {
+            width: 65px;
+            height: 65px;
+            font-size: 1.3rem;
+        }
+    }
+
+    &.media-xl {
+        img {
+            max-width: 80px;
+            height: 80px;
+        }
+
+        span {
+            width: 80px;
+            height: 80px;
+            font-size: 1.7rem;
+        }
+    }
+}
+
+.media-reset {
+    outline: none;
+    border: none;
+    font-weight: 400;
+    margin-right: 15px;
+    margin-bottom: 15px;
+}
