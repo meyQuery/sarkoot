@@ -14,7 +14,17 @@
 			}
 			else if (window.iziToast)
 			{
-				iziToast[res.is_ok ? 'success' : 'error']({ message: res.message_text || res.message});
+				var message = res.message_text || res.message;
+				if (res.errors)
+				{
+					var count = 0;
+					for (err in res.errors) ++count;
+					if (count === 1 && res.errors[err].length == 1)
+					{
+						message = res.errors[err][0];
+					}
+				}
+				iziToast[res.is_ok ? 'success' : 'error']({ message: message});
 			}
 		}
 		if(res.redirect)

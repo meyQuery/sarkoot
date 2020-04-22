@@ -212,8 +212,17 @@
 					var base = $(this).attr('data-xhr');
 					if(base)
 					{
-						changed.push($("[data-xhr='"+base+"']"));
-						$("[data-xhr='"+base+"']").html($(this).html());
+						changed.push(this);
+						$("[data-xhr='"+base+"']").replaceWith(this);
+						var fold = $(this).attr('data-xhr-fold');
+						if (!fold)
+						{
+							$("[data-xhr='" + base + "']").addClass('statio-fold');
+						}
+						else if (fold.substr(0, 1) == '.')
+						{
+							$("[data-xhr='" + base + "']").addClass(fold.substr(1));
+						}
 					}
 				});
 				$(document).trigger('statio:global:renderResponse', [$(changed), options.context, response.data, response.body]);
