@@ -29,6 +29,10 @@
         border-radius: 4px;
     }
 
+    &.rounded-circle {
+        border-radius: 50%;
+    }
+
     &.media-success {
         span {
             background: rgba(29, 201, 183, .1);
