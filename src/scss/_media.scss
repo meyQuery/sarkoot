@@ -78,6 +78,13 @@
         }
     }
 
+    &.media-light {
+        span {
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+    }
+
     &.media-sm {
         img {
             max-width: 30px;
