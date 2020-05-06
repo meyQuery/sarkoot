@@ -30,7 +30,10 @@
     }
 
     &.rounded-circle {
-        border-radius: 50%;
+        &>span,
+        &>img {
+            border-radius: 50%;
+        }
     }
 
     &.media-success {
