@@ -21,11 +21,12 @@ function js() {
         }))
         .pipe(dest('dist/js', { sourcemaps: false }))
 }
-function watchFile()
-{
+
+function watchFile() {
     watch('src/scss/**/*.scss', css);
     watch('src/js/**/*.js', js);
 }
+
 exports.js = js;
 exports.css = css;
 exports.watchFile = watchFile;
