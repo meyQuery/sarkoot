@@ -33,7 +33,36 @@
         }
     }
 
-    input {
+    &.richak-checkbox {
+        width: 100%!important;
+
+        label {
+            -webkit-box-orient: horizontal;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: row;
+            flex-direction: row;
+            -webkit-box-pack: start;
+            -ms-flex-pack: start;
+            justify-content: flex-start;
+            width: 100%!important;
+
+            .richak-icon {
+                margin-bottom: 0;
+                &::before {
+                    font-family: "Font Awesome 5 Pro";
+                    content: '\f0c8';
+                    margin-left: .5rem;
+                    margin-right: 1rem;
+                }
+            }
+        }
+
+        input[type="checkbox"]:checked + label .richak-icon::before {
+            content: "\f14a";
+        }
+    }
+
+    &>input {
         opacity: 0;
         width: 0;
         height: 0;
