@@ -20,6 +20,9 @@ $(document).on('statio:global:renderResponse', function (event, base, context) {
 			new Lijax(this);
 		});
 		$("a", this).not('.direct, [data-direct], [target=_blank], .lijax, [data-lijax]').on('click', function () {
+			if (/^\#(.*)$/.test($(this).attr('href'))){
+				return true;
+			}
 			new Statio({
 				url: $(this).attr('href'),
 				type: $(this).is('.action') ? 'render' : 'both',
@@ -52,13 +55,16 @@ $(document).on('statio:global:renderResponse', function (event, base, context) {
 			select2element.call(this);
 		});
 		$('.select2-select[data-relation]', this).on('select2:select', function (e) {
-			var relation_id = $(this).attr('data-relation');
-			var relation = $('#' + relation_id);
-			var url = relation.attr('data-url-pattern').replace('%%', $(this).val());
-			relation.attr('data-url', url);
-			relation.select2('destroy');
-			$('*', relation).remove();
-			select2element.call(relation[0]);
+			var relation_ids = $(this).attr('data-relation');
+			var f_id = $(this).val();
+			relation_ids.split(' ').forEach(function (relation_id){
+				var relation = $('#' + relation_id);
+				var url = unescape(relation.attr('data-url-pattern')).replace('%%', f_id);
+				relation.attr('data-url', url);
+				relation.select2('destroy');
+				$('*', relation).remove();
+				select2element.call(relation[0]);
+			});
 		});
 	});
 });

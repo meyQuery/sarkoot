@@ -161,6 +161,7 @@
     window.Lijax = lijax;
 })();
 (function(){
+	var historyBack = null;
 	var _globals = {
 		title : function (value){
 			$('title').html(value);
@@ -216,6 +217,7 @@
 
 		custom.ajax = $.extend({}, _ajax, custom.ajax);
 		custom.ajax.url = custom.url;
+		if (/^\#(.*)$/.test(custom.ajax.url)) return true;
 		custom.globals = $.extend({}, _globals, custom.globals);
 		var options = $.extend({}, _options, custom);
 
@@ -235,6 +237,10 @@
 
 		var ajax_data = null;
 		var ajax_send_url = null;
+		if (options.type != 'render')
+		{
+			historyBack = options.ajax.url;
+		}
 		if(!options.fake)
 		{
 			if(!options.ajax.complete)
@@ -251,8 +257,8 @@
 				{
 					delete urlx.get._;
 				}
-            	var get = url.buildget(urlx.get);
-            	ajax_send_url = urlx.url.replace(/\?(.*)$/, get ? '?' + get : '');
+				var get = url.buildget(urlx.get);
+				ajax_send_url = urlx.url.replace(/\?([^#]*)(\#.*)?$/, get ? '?' + get + '$2' : '$2');
 				beforeSend ? beforeSend.call(this, jqXHR, settings) : null;
 			}
 			$.ajax(options.ajax);
@@ -407,6 +413,12 @@
 	 * popstate event
 	 */
 	 window.onpopstate = function(event){
+		 var backHistoryParse = historyBack ? historyBack.match(/^([^#]*)(\#(.*))?$/) : null;
+		 var HistoryParse = location.href ? location.href.match(/^([^#]*)(\#(.*))?$/) : null;
+		 if (backHistoryParse[1] == HistoryParse[1] && backHistoryParse[3] != HistoryParse[3])
+		 {
+			 return true;
+		 }
 	 	new Statio({
 	 		url : location.href,
 	 		replace : true
@@ -972,6 +984,9 @@ $(document).on('statio:global:renderResponse', function (event, base, context) {
 			new Lijax(this);
 		});
 		$("a", this).not('.direct, [data-direct], [target=_blank], .lijax, [data-lijax]').on('click', function () {
+			if (/^\#(.*)$/.test($(this).attr('href'))){
+				return true;
+			}
 			new Statio({
 				url: $(this).attr('href'),
 				type: $(this).is('.action') ? 'render' : 'both',
@@ -1004,13 +1019,16 @@ $(document).on('statio:global:renderResponse', function (event, base, context) {
 			select2element.call(this);
 		});
 		$('.select2-select[data-relation]', this).on('select2:select', function (e) {
-			var relation_id = $(this).attr('data-relation');
-			var relation = $('#' + relation_id);
-			var url = relation.attr('data-url-pattern').replace('%%', $(this).val());
-			relation.attr('data-url', url);
-			relation.select2('destroy');
-			$('*', relation).remove();
-			select2element.call(relation[0]);
+			var relation_ids = $(this).attr('data-relation');
+			var f_id = $(this).val();
+			relation_ids.split(' ').forEach(function (relation_id){
+				var relation = $('#' + relation_id);
+				var url = unescape(relation.attr('data-url-pattern')).replace('%%', f_id);
+				relation.attr('data-url', url);
+				relation.select2('destroy');
+				$('*', relation).remove();
+				select2element.call(relation[0]);
+			});
 		});
 	});
 });

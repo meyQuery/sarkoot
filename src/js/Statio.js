@@ -1,4 +1,5 @@
 (function(){
+	var historyBack = null;
 	var _globals = {
 		title : function (value){
 			$('title').html(value);
@@ -54,6 +55,7 @@
 
 		custom.ajax = $.extend({}, _ajax, custom.ajax);
 		custom.ajax.url = custom.url;
+		if (/^\#(.*)$/.test(custom.ajax.url)) return true;
 		custom.globals = $.extend({}, _globals, custom.globals);
 		var options = $.extend({}, _options, custom);
 
@@ -73,6 +75,10 @@
 
 		var ajax_data = null;
 		var ajax_send_url = null;
+		if (options.type != 'render')
+		{
+			historyBack = options.ajax.url;
+		}
 		if(!options.fake)
 		{
 			if(!options.ajax.complete)
@@ -89,8 +95,8 @@
 				{
 					delete urlx.get._;
 				}
-            	var get = url.buildget(urlx.get);
-            	ajax_send_url = urlx.url.replace(/\?(.*)$/, get ? '?' + get : '');
+				var get = url.buildget(urlx.get);
+				ajax_send_url = urlx.url.replace(/\?([^#]*)(\#.*)?$/, get ? '?' + get + '$2' : '$2');
 				beforeSend ? beforeSend.call(this, jqXHR, settings) : null;
 			}
 			$.ajax(options.ajax);
@@ -245,6 +251,12 @@
 	 * popstate event
 	 */
 	 window.onpopstate = function(event){
+		 var backHistoryParse = historyBack ? historyBack.match(/^([^#]*)(\#(.*))?$/) : null;
+		 var HistoryParse = location.href ? location.href.match(/^([^#]*)(\#(.*))?$/) : null;
+		 if (backHistoryParse[1] == HistoryParse[1] && backHistoryParse[3] != HistoryParse[3])
+		 {
+			 return true;
+		 }
 	 	new Statio({
 	 		url : location.href,
 	 		replace : true
