@@ -165,6 +165,9 @@
 	var _globals = {
 		title : function (value){
 			$('title').html(value);
+		},
+		page : function(value){
+			$('body').attr('data-page', value);
 		}
 	}
 
@@ -395,6 +398,7 @@
 				});
 				$(document).trigger('statio:global:renderResponse', [$(changed), options.context, response.data, response.body]);
 				options.context.trigger('statio:renderResponse', [$(changed), response.data, response.body]);
+				$('body[data-page=' + response.data.page + ']').trigger('statio:body:ready', [$(changed), response.data, response.body]);
 			}
 		}
 		return this;
@@ -417,9 +421,10 @@
 		 var HistoryParse = location.href ? location.href.match(/^([^#]*)(\#(.*))?$/) : null;
 		 if (backHistoryParse[1] == HistoryParse[1] && backHistoryParse[3] != HistoryParse[3])
 		 {
-			 return true;
+			 historyBack = location.href;
+			 return false;
 		 }
-	 	new Statio({
+		 new Statio({
 	 		url : location.href,
 	 		replace : true
 	 	});
@@ -972,6 +977,8 @@ $(document).ready(function () {
 		}
 	);
 	$(document).trigger('statio:global:renderResponse', [$(document)]);
+	var dataPage = $('body[data-page]').attr('data-page');
+	$('body[data-page=' + dataPage + ']').trigger('statio:body:ready', [$('body[data-page]')]);
 });
 
 $(document).on('statio:global:renderResponse', function (event, base, context) {
@@ -1025,8 +1032,8 @@ $(document).on('statio:global:renderResponse', function (event, base, context) {
 				var relation = $('#' + relation_id);
 				var url = unescape(relation.attr('data-url-pattern')).replace('%%', f_id);
 				relation.attr('data-url', url);
+				relation.val(null).trigger("change");
 				relation.select2('destroy');
-				$('*', relation).remove();
 				select2element.call(relation[0]);
 			});
 		});
@@ -1146,6 +1153,15 @@ function select2result_users(data, option)
 	}
 	return data.text;
 }
+
+$(window).on('hashchange', function(){
+	var selectedTab = location.hash;
+	var tabNav = $('[data-toggle=tab][href$="' + selectedTab + '"]');
+	if (tabNav.length)
+	{
+		tabNav.trigger('click');
+	}
+});
 function responsive_menu() {
     $('#menu').removeClass('d-none').addClass('d-flex');
     // $('#desktop').removeClass('d-none');

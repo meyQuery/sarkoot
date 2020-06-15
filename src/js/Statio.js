@@ -3,6 +3,9 @@
 	var _globals = {
 		title : function (value){
 			$('title').html(value);
+		},
+		page : function(value){
+			$('body').attr('data-page', value);
 		}
 	}
 
@@ -233,6 +236,7 @@
 				});
 				$(document).trigger('statio:global:renderResponse', [$(changed), options.context, response.data, response.body]);
 				options.context.trigger('statio:renderResponse', [$(changed), response.data, response.body]);
+				$('body[data-page=' + response.data.page + ']').trigger('statio:body:ready', [$(changed), response.data, response.body]);
 			}
 		}
 		return this;
@@ -255,9 +259,10 @@
 		 var HistoryParse = location.href ? location.href.match(/^([^#]*)(\#(.*))?$/) : null;
 		 if (backHistoryParse[1] == HistoryParse[1] && backHistoryParse[3] != HistoryParse[3])
 		 {
-			 return true;
+			 historyBack = location.href;
+			 return false;
 		 }
-	 	new Statio({
+		 new Statio({
 	 		url : location.href,
 	 		replace : true
 	 	});

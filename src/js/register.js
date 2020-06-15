@@ -8,6 +8,8 @@ $(document).ready(function () {
 		}
 	);
 	$(document).trigger('statio:global:renderResponse', [$(document)]);
+	var dataPage = $('body[data-page]').attr('data-page');
+	$('body[data-page=' + dataPage + ']').trigger('statio:body:ready', [$('body[data-page]')]);
 });
 
 $(document).on('statio:global:renderResponse', function (event, base, context) {
@@ -61,8 +63,8 @@ $(document).on('statio:global:renderResponse', function (event, base, context) {
 				var relation = $('#' + relation_id);
 				var url = unescape(relation.attr('data-url-pattern')).replace('%%', f_id);
 				relation.attr('data-url', url);
+				relation.val(null).trigger("change");
 				relation.select2('destroy');
-				$('*', relation).remove();
 				select2element.call(relation[0]);
 			});
 		});
@@ -182,3 +184,12 @@ function select2result_users(data, option)
 	}
 	return data.text;
 }
+
+$(window).on('hashchange', function(){
+	var selectedTab = location.hash;
+	var tabNav = $('[data-toggle=tab][href$="' + selectedTab + '"]');
+	if (tabNav.length)
+	{
+		tabNav.trigger('click');
+	}
+});
