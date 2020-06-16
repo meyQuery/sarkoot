@@ -1,0 +1,9 @@
+.placeholder-right::placeholder {
+    text-align: right;
+    direction: rtl;
+}
+
+.placeholder-left::placeholder {
+    text-align: left;
+    direction: ltr;
+}
