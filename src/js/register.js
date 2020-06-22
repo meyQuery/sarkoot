@@ -12,6 +12,7 @@ $(document).ready(function () {
 	$('body[data-page=' + dataPage + ']').trigger('statio:body:ready', [$('body[data-page]')]);
 });
 
+
 $(document).on('statio:global:renderResponse', function (event, base, context) {
 	base.each(function () {
 		$('.input-avatar', this).hajmad();
