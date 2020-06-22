@@ -25,7 +25,7 @@
         &:checked {
             & + label {
                 span {
-                    background-color: #f5f5f5;
+                    background-color: #ffffff;
 
                     &::before {
                         content: attr(data-number);
