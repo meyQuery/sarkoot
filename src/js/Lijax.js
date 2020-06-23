@@ -12,9 +12,12 @@
         {
             fire = ['submit'];
         }
-        else
+        else if($(context).is('input, select, textarea'))
         {
-            fire = $(context).attr('data-lijax').split(' ') || ['change'];
+            fire = $(context).attr('data-lijax') ? $(context).attr('data-lijax').split(' ') : ['change'];
+        }
+        else{
+            fire = $(context).attr('data-lijax') ? $(context).attr('data-lijax').split(' ') : ['click'];
         }
         for (var i = 0; i < fire.length; i++) {
             if(/^\d+$/.test(fire[i]))
