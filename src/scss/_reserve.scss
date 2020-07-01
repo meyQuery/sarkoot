@@ -1,0 +1,44 @@
+.reserve-row {
+    &>div {
+        width: 5.88%;
+        font-weight: 700;
+        font-size: 12px;
+        border-top: 1px solid #eee;
+        border-left: 1px solid #eee;
+        border-bottom: 1px solid #eee;
+        padding: .25rem;
+        text-align: center;
+
+        &:nth-child(1) {
+            border-right: 1px solid #eee;
+        }
+    }
+}
+
+.table-reserve-title {
+    width: 5.88%;
+    font-weight: 700;
+    font-size: 12px;
+    border-left: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    border-right: 1px solid #eee;
+    padding: .25rem;
+    text-align: center;
+}
+
+.table-reserve-data {
+    width: 94.08%;
+    border-left: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding: .25rem;
+    text-align: center;
+}
+
+.table-reserve-time {
+    background-color: #5578eb;
+    min-height: 10px;
+    border-radius: .25rem;
+    margin-right: 5.88%;
+    font-size: 10px;
+    color: #fff;
+}
