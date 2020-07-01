@@ -41,4 +41,10 @@
     margin-right: 5.88%;
     font-size: 10px;
     color: #fff;
+    cursor: pointer;
+    transition: all .2s;
+
+    &:hover {
+        transform: scale(1.1);
+    }
 }
