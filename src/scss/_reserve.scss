@@ -51,7 +51,17 @@
         }
 
         &:checked+label {
-            background-color: #1dc9b7;
+            background-color: #fff;
+            border: 1px solid #5578eb;
+            color: #5578eb;
+            position: relative;
+
+            &:before {
+                font-family: "Font Awesome 5 Pro";
+                content: '\f00c';
+                position: absolute;
+                right: 5px;
+            }
         }
     }
 }
