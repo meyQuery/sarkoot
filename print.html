@@ -13,6 +13,10 @@
     <link rel="stylesheet" href="dist/css/sarkoot.css">
 
     <style>
+        body {
+            counter-reset: page;
+        }
+
         .page-header,
         .page-header-space {
             height: 100px;
@@ -57,7 +61,12 @@
 
         @page {
             margin: 0;
-            counter-increment: page
+            counter-increment: page;
+
+            @bottom-center {
+                content: counter(page);
+                text-align: center;
+            }
         }
 
         @media print {
