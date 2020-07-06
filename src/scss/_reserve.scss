@@ -35,11 +35,12 @@
 }
 
 .table-reserve-time {
-    background-color: #5578eb;
+    background-color: #fff;
+    border: 1px solid #5578eb;
+    color: #5578eb;
     min-height: 10px;
     border-radius: .25rem;
     font-size: 10px;
-    color: #fff;
     cursor: pointer;
     display: block;
 }
@@ -51,9 +52,8 @@
         }
 
         &:checked+label {
-            background-color: #fff;
-            border: 1px solid #5578eb;
-            color: #5578eb;
+            background-color: #5578eb;
+            color: #fff;
             position: relative;
 
             &:before {
