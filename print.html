@@ -35,6 +35,11 @@
             text-align: center;
         }
 
+        .page-footer:after {
+            counter-increment: page;
+            content: counter(page);
+        }
+
         .page-header {
             position: fixed;
             top: 0mm;
@@ -52,6 +57,7 @@
 
         @page {
             margin: 0;
+            counter-increment: page
         }
 
         @media print {
