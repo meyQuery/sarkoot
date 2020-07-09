@@ -236,7 +236,10 @@
 				});
 				$(document).trigger('statio:global:renderResponse', [$(changed), options.context, response.data, response.body]);
 				options.context.trigger('statio:renderResponse', [$(changed), response.data, response.body]);
-				$('body[data-page=' + response.data.page + ']').trigger('statio:body:ready', [$(changed), response.data, response.body]);
+				if (response && response.data && response.data.page)
+				{
+					$('body').trigger('statio:' + response.data.page.replace(/[-]/g, ':'), [$(changed), response.data, response.body]);
+				}
 			}
 		}
 		return this;

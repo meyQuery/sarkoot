@@ -36,7 +36,8 @@
 			else
 			{
 				new Statio({
-					url : res.redirect
+					url : res.redirect,
+					replace : res.replace
 				});
 			}
 		}
@@ -104,7 +105,7 @@
                 else
                 {
                     Data.forEach(function (value, name) {
-                        data[name] = /\[.*\]$/.test(name) ? Data.getAll(name) : Data.get(name);
+                        data[name] = /\[\]$/.test(name) ? Data.getAll(name) : Data.get(name);
                     });
                 }
                 state = false;
@@ -126,6 +127,10 @@
                 back_value = value;
                 var data = {};
                 data[name] = value;
+                if($(context).attr('data-merge')){
+                    var merge = JSON.parse($(context).attr('data-merge'));
+                    console.log($.extend(data, merge));
+                }
             }
             if ($(context).attr('data-query'))
             {
@@ -401,7 +406,10 @@
 				});
 				$(document).trigger('statio:global:renderResponse', [$(changed), options.context, response.data, response.body]);
 				options.context.trigger('statio:renderResponse', [$(changed), response.data, response.body]);
-				$('body[data-page=' + response.data.page + ']').trigger('statio:body:ready', [$(changed), response.data, response.body]);
+				if (response && response.data && response.data.page)
+				{
+					$('body').trigger('statio:' + response.data.page.replace(/[-]/g, ':'), [$(changed), response.data, response.body]);
+				}
 			}
 		}
 		return this;
@@ -806,91 +814,6 @@ if (profile)
     });
 }
 
-if (window.am4core)
-{
-    am4core.ready(function () {
-
-        // Themes begin
-        am4core.useTheme(am4themes_amcharts);
-        // Themes end
-
-        // Create chart instance
-        var chart = am4core.create("chartdiv", am4charts.XYChart);
-
-        chart.rtl = true;
-
-        // Add data
-        chart.data = [{
-            "country": "USA",
-            "visits": 2025
-        }, {
-            "country": "China",
-            "visits": 1882
-        }, {
-            "country": "Japan",
-            "visits": 1809
-        }, {
-            "country": "Germany",
-            "visits": 1322
-        }, {
-            "country": "UK",
-            "visits": 1122
-        }, {
-            "country": "France",
-            "visits": 1114
-        }, {
-            "country": "India",
-            "visits": 984
-        }, {
-            "country": "Spain",
-            "visits": 711
-        }, {
-            "country": "Netherlands",
-            "visits": 665
-        }, {
-            "country": "Russia",
-            "visits": 580
-        }, {
-            "country": "South Korea",
-            "visits": 443
-        }, {
-            "country": "Canada",
-            "visits": 441
-        }, {
-            "country": "Brazil",
-            "visits": 395
-        }];
-
-        // Create axes
-
-        var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
-        categoryAxis.dataFields.category = "country";
-        categoryAxis.renderer.grid.template.location = 0;
-        categoryAxis.renderer.minGridDistance = 30;
-
-        categoryAxis.renderer.labels.template.adapter.add("dy", function (dy, target) {
-            if (target.dataItem && target.dataItem.index & 2 == 2) {
-                return dy + 25;
-            }
-            return dy;
-        });
-
-        var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-
-        // Create series
-        var series = chart.series.push(new am4charts.ColumnSeries());
-        series.dataFields.valueY = "visits";
-        series.dataFields.categoryX = "country";
-        series.name = "Visits";
-        series.columns.template.tooltipText = "{categoryX}: [bold]{valueY}[/]";
-        series.columns.template.fillOpacity = .8;
-
-        var columnTemplate = series.columns.template;
-        columnTemplate.strokeWidth = 2;
-        columnTemplate.strokeOpacity = 1;
-
-    });
-}
 
 $(document).ready(function() {
     if ($.fn.select2)
@@ -971,6 +894,10 @@ $(document).ready(function(){
 })
 
 $(document).ready(function () {
+	if (i18n && window.lang && window.lang[$('html').attr('lang')])
+	{
+		i18n.translator.add(window.lang[$('html').attr('lang')]);
+	}
 	$.ajaxSetup(
 		{
 			headers:
@@ -981,7 +908,7 @@ $(document).ready(function () {
 	);
 	$(document).trigger('statio:global:renderResponse', [$(document)]);
 	var dataPage = $('body[data-page]').attr('data-page');
-	$('body[data-page=' + dataPage + ']').trigger('statio:body:ready', [$('body[data-page]')]);
+	$('body').trigger('statio:' + dataPage.replace(/[-]/g, ':'), [$('body')]);
 });
 
 
@@ -1040,6 +967,52 @@ $(document).on('statio:global:renderResponse', function (event, base, context) {
 				relation.select2('destroy');
 				select2element.call(relation[0]);
 			});
+		});
+		$('.date-picker', this).each(function(){
+			var val = $(this).val();
+			$(this).persianDatepicker({
+				format: $(this).attr('data-picker-format') || "YYYY/M/D H:m",
+				minDate: $(this).attr('data-picker-minDate') * 1000,
+				maxDate: $(this).attr('data-picker-maxDate') * 1000,
+				altFieldFormatter : function (unix) {
+					return unix / 1000;
+				},
+				altFormat: "unix",
+				altField: '#' + $(this).attr('data-picker-alt'),
+				calendar: {
+					persian: {
+						locale: "fa",
+						showHint: false,
+						leapYearMode: "algorithmic"
+					}
+				},
+				navigator: {
+					enabled: true,
+					scroll: {
+						enabled: true
+					}
+				},
+				toolbox: {
+					calendarSwitch: {
+						enabled: false
+					},
+					submitButton: {
+						enabled: true
+					}
+				},
+				timePicker: {
+					enabled: true,
+					second: {
+						enabled: false
+					}
+				},
+				responsive: true
+			});
+			if (val)
+			{
+				var date = new persianDate(val * 1000);
+				$(this).val(date.format('YYYY/M/D H:m'));
+			}
 		});
 	});
 });
@@ -1138,6 +1111,10 @@ function select2find_data(record, key)
 
 function select2result_users(data, option)
 {
+	if (!data.all && data.element) {
+		data.all = JSON.parse($(data.element).attr('data-json'));
+		$(data.element).attr('data-json', '');
+	}
 	if (data.all)
 	{
 		var span = $('<div class="d-flex align-items-center fs-12 d-inline-block"><span class="media media-sm media-primary"><img alt="A"></span><div class="pr-1"><div class="font-weight-bold data-name"></div><div class="fs-10 data-id"></div></div></div>');

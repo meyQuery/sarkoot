@@ -1,4 +1,8 @@
 $(document).ready(function () {
+	if (i18n && window.lang && window.lang[$('html').attr('lang')])
+	{
+		i18n.translator.add(window.lang[$('html').attr('lang')]);
+	}
 	$.ajaxSetup(
 		{
 			headers:
@@ -9,7 +13,7 @@ $(document).ready(function () {
 	);
 	$(document).trigger('statio:global:renderResponse', [$(document)]);
 	var dataPage = $('body[data-page]').attr('data-page');
-	$('body[data-page=' + dataPage + ']').trigger('statio:body:ready', [$('body[data-page]')]);
+	$('body').trigger('statio:' + dataPage.replace(/[-]/g, ':'), [$('body')]);
 });
 
 
@@ -68,6 +72,52 @@ $(document).on('statio:global:renderResponse', function (event, base, context) {
 				relation.select2('destroy');
 				select2element.call(relation[0]);
 			});
+		});
+		$('.date-picker', this).each(function(){
+			var val = $(this).val();
+			$(this).persianDatepicker({
+				format: $(this).attr('data-picker-format') || "YYYY/M/D H:m",
+				minDate: $(this).attr('data-picker-minDate') * 1000,
+				maxDate: $(this).attr('data-picker-maxDate') * 1000,
+				altFieldFormatter : function (unix) {
+					return unix / 1000;
+				},
+				altFormat: "unix",
+				altField: '#' + $(this).attr('data-picker-alt'),
+				calendar: {
+					persian: {
+						locale: "fa",
+						showHint: false,
+						leapYearMode: "algorithmic"
+					}
+				},
+				navigator: {
+					enabled: true,
+					scroll: {
+						enabled: true
+					}
+				},
+				toolbox: {
+					calendarSwitch: {
+						enabled: false
+					},
+					submitButton: {
+						enabled: true
+					}
+				},
+				timePicker: {
+					enabled: true,
+					second: {
+						enabled: false
+					}
+				},
+				responsive: true
+			});
+			if (val)
+			{
+				var date = new persianDate(val * 1000);
+				$(this).val(date.format('YYYY/M/D H:m'));
+			}
 		});
 	});
 });
@@ -166,6 +216,10 @@ function select2find_data(record, key)
 
 function select2result_users(data, option)
 {
+	if (!data.all && data.element) {
+		data.all = JSON.parse($(data.element).attr('data-json'));
+		$(data.element).attr('data-json', '');
+	}
 	if (data.all)
 	{
 		var span = $('<div class="d-flex align-items-center fs-12 d-inline-block"><span class="media media-sm media-primary"><img alt="A"></span><div class="pr-1"><div class="font-weight-bold data-name"></div><div class="fs-10 data-id"></div></div></div>');
