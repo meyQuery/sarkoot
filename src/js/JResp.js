@@ -36,7 +36,8 @@
 			else
 			{
 				new Statio({
-					url : res.redirect
+					url : res.redirect,
+					replace : res.replace
 				});
 			}
 		}

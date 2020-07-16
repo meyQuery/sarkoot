@@ -59,7 +59,7 @@
                 else
                 {
                     Data.forEach(function (value, name) {
-                        data[name] = /\[.*\]$/.test(name) ? Data.getAll(name) : Data.get(name);
+                        data[name] = /\[\]$/.test(name) ? Data.getAll(name) : Data.get(name);
                     });
                 }
                 state = false;
@@ -81,6 +81,10 @@
                 back_value = value;
                 var data = {};
                 data[name] = value;
+                if($(context).attr('data-merge')){
+                    var merge = JSON.parse($(context).attr('data-merge'));
+                    console.log($.extend(data, merge));
+                }
             }
             if ($(context).attr('data-query'))
             {
