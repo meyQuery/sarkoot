@@ -1,5 +1,5 @@
 $(document).ready(function () {
-	if (i18n && window.lang && window.lang[$('html').attr('lang')])
+	if (window['i18n'] && window.lang && window.lang[$('html').attr('lang')])
 	{
 		i18n.translator.add(window.lang[$('html').attr('lang')]);
 	}
@@ -45,16 +45,18 @@ $(document).on('statio:global:renderResponse', function (event, base, context) {
 			$('.invalid-feedback', this).remove();
 			if (d.errors) {
 				for (var id in d.errors) {
-					var elementBase = $('#' + id + ':not(.hide-input), [data-alias~=' + id + ']');
+					var elementBase = $('#' + id + ':not(.hide-input), [data-alias~=' + id + '], [name=' + id +']:not(.hide-input)', this);
 					elementBase.addClass('is-invalid');
-					if (elementBase.is('.form-control-m'))
-					{
-						$('<div class="invalid-feedback">' + d.errors[id][0] + '</div>').insertAfter(elementBase.next('label'));
-					}
-					else
-					{
-						$('<div class="invalid-feedback">' + d.errors[id][0] + '</div>').insertAfter(elementBase);
-					}
+					elementBase.each(function(){
+						if ($(this).is('.form-control-m'))
+						{
+							$('<div class="invalid-feedback">' + d.errors[id][0] + '</div>').insertAfter($(this).next('label'));
+						}
+						else
+						{
+							$('<div class="invalid-feedback">' + d.errors[id][0] + '</div>').insertAfter($(this));
+						}
+					});
 				}
 			}
 		});
@@ -75,11 +77,13 @@ $(document).on('statio:global:renderResponse', function (event, base, context) {
 		});
 		$('.date-picker', this).each(function(){
 			var val = $(this).val();
+			var _self = this;
 			$(this).persianDatepicker({
 				format: $(this).attr('data-picker-format') || "YYYY/M/D H:m",
 				minDate: $(this).attr('data-picker-minDate') * 1000,
 				maxDate: $(this).attr('data-picker-maxDate') * 1000,
 				altFieldFormatter : function (unix) {
+					$('#' + $(_self).attr('data-picker-alt')).trigger('change', [_self, unix]);
 					return unix / 1000;
 				},
 				altFormat: "unix",
@@ -224,6 +228,7 @@ function select2result_users(data, option)
 	{
 		var span = $('<div class="d-flex align-items-center fs-12 d-inline-block"><span class="media media-sm media-primary"><img alt="A"></span><div class="pr-1"><div class="font-weight-bold data-name"></div><div class="fs-10 data-id"></div></div></div>');
 		var avatar = select2find_data(data.all, $(this).attr('data-avatar') || 'avatar.tiny.url avatar.small.url');
+		var text = $(this).attr('data-title') ? select2find_data(data.all, $(this).attr('data-title')) : data.text;
 		if (avatar)
 		{
 			$('img', span).attr('src', avatar);
@@ -231,9 +236,9 @@ function select2result_users(data, option)
 		else
 		{
 			$('img', span).remove();
-			$('.media', span).html('<span>' + (data.text ? data.text.substr(0, 1) : 'IR')   + '</span>');
+			$('.media', span).html('<span>' + (text ? text.substr(0, 1) : 'IR')   + '</span>');
 		}
-		$('div.data-name', span).html(data.text || 'بی‌نام');
+		$('div.data-name', span).html(text || 'بی‌نام');
 		$('div.data-id', span).html(data.id);
 		return span;
 	}
