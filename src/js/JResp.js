@@ -24,7 +24,6 @@
 						message = res.errors[err][0];
 					}
 				}
-				console.log($('body').is('.rtl'));
 				iziToast[res.is_ok ? 'show' : 'error']({
 					message: message,
 					rtl: $('body').is('.rtl'),

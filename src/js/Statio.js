@@ -6,6 +6,27 @@
 		},
 		page : function(value){
 			$('body').attr('data-page', value);
+		},
+		qSearch : function(value){
+			var input = $('#quick_search');
+			var page = input.attr('data-basePage');
+			if (page != $('body').attr('data-page'))
+			{
+				input.val('');
+			}
+
+			if (value) {
+				input.parents('form').fadeIn('fast');
+			}
+			else
+			{
+				input.parents('form').fadeOut('fast');
+			}
+			var query = url.parse(location.href).get || {};
+			query.q = query ? query.q : '';
+			if (!input.is(':focus') && query.q != input.val()) {
+				input.val(query.q);
+			}
 		}
 	}
 
@@ -211,7 +232,7 @@
 			{
 				if(options.globals[D])
 				{
-					options.globals[D](response.data[D]);
+					options.globals[D](response.data[D], response.data, response.body);
 				}
 			}
 			if(response.body)
@@ -265,6 +286,7 @@
 			 historyBack = location.href;
 			 return false;
 		 }
+
 		 new Statio({
 	 		url : location.href,
 	 		replace : true

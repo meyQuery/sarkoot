@@ -24,7 +24,6 @@
 						message = res.errors[err][0];
 					}
 				}
-				console.log($('body').is('.rtl'));
 				iziToast[res.is_ok ? 'show' : 'error']({
 					message: message,
 					rtl: $('body').is('.rtl'),
@@ -181,6 +180,27 @@
 		},
 		page : function(value){
 			$('body').attr('data-page', value);
+		},
+		qSearch : function(value){
+			var input = $('#quick_search');
+			var page = input.attr('data-basePage');
+			if (page != $('body').attr('data-page'))
+			{
+				input.val('');
+			}
+
+			if (value) {
+				input.parents('form').fadeIn('fast');
+			}
+			else
+			{
+				input.parents('form').fadeOut('fast');
+			}
+			var query = url.parse(location.href).get || {};
+			query.q = query ? query.q : '';
+			if (!input.is(':focus') && query.q != input.val()) {
+				input.val(query.q);
+			}
 		}
 	}
 
@@ -386,7 +406,7 @@
 			{
 				if(options.globals[D])
 				{
-					options.globals[D](response.data[D]);
+					options.globals[D](response.data[D], response.data, response.body);
 				}
 			}
 			if(response.body)
@@ -440,6 +460,7 @@
 			 historyBack = location.href;
 			 return false;
 		 }
+
 		 new Statio({
 	 		url : location.href,
 	 		replace : true
@@ -968,6 +989,7 @@ $(document).on('statio:global:renderResponse', function (event, base, context) {
 			var f_id = $(this).val();
 			relation_ids.split(' ').forEach(function (relation_id){
 				var relation = $('#' + relation_id);
+				if (!relation.length) return;
 				var url = unescape(relation.attr('data-url-pattern')).replace('%%', f_id);
 				relation.attr('data-url', url);
 				relation.val(null).trigger("change");

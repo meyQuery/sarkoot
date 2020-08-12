@@ -68,6 +68,7 @@ $(document).on('statio:global:renderResponse', function (event, base, context) {
 			var f_id = $(this).val();
 			relation_ids.split(' ').forEach(function (relation_id){
 				var relation = $('#' + relation_id);
+				if (!relation.length) return;
 				var url = unescape(relation.attr('data-url-pattern')).replace('%%', f_id);
 				relation.attr('data-url', url);
 				relation.val(null).trigger("change");
