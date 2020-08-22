@@ -130,7 +130,10 @@
                 if(back_value == value && $(context).is('input, textarea, select') && !onFire) return;
                 back_value = value;
                 var data = {};
-                data[name] = value;
+                if(name)
+                {
+                    data[name] = value;
+                }
                 if($(context).attr('data-merge')){
                     var merge = JSON.parse($(context).attr('data-merge'));
                     console.log($.extend(data, merge));
@@ -150,6 +153,22 @@
                     'Data-xhr-base': $(context).attr('data-xhrBase')
                 };
             }
+            var preload = $('#' + $(context).attr('data-lijax-preload')).eq(0);
+            var success = $('#' + $(context).attr('data-lijax-success')).eq(0);
+            $(context).on('statio:jsonResponse', function (event, data, jqXHR) {
+                if (preload && jqXHR.status != 202) {
+                    $(this).removeClass('lijax-preload');
+                    if (success && ['Created', 'OK'].indexOf(jqXHR.statusText) >= 0) {
+                        preload.hide();
+                        success.hide().removeClass('d-none').fadeIn('fast');
+                    }
+                    else
+                    {
+                        preload.hide();
+                        $(context).fadeIn('fast');
+                    }
+                }
+            });
             new Statio({
                 type : state ? 'both' : 'render',
                 context: context,
@@ -159,7 +178,14 @@
                     cache       : false,
                     method : method,
                     data : data,
-                    headers: headers
+                    headers: headers,
+                    beforeSend : function(){
+                        if ($(context).is('[data-lijax-preload]'))
+                        {
+                            $(context).addClass('lijax-preload').hide();
+                            preload.hide().removeClass('d-none').fadeIn('fast');
+                        }
+                    }
                 },
                 url : action
             });
@@ -186,6 +212,7 @@
 			var page = input.attr('data-basePage');
 			if (page != $('body').attr('data-page'))
 			{
+				input.attr('data-basePage', $('body').attr('data-page'));
 				input.val('');
 			}
 
