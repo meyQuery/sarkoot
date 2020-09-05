@@ -25,7 +25,28 @@ select.form-control-m {
         margin: 0;
 		-webkit-transition: all 0.2s ease;
 		transition: all 0.2s ease;
-		pointer-events: none;
+        pointer-events: none;
+
+        span.optional {
+            font-size: 85%;
+            color: rgba(56, 74, 215, 0.75);
+
+            // background-color: rgba(56, 74, 215, 0.15);
+            // padding: 0.25rem;
+            // border-radius: 0.25rem;
+            &::before,
+            &::after {
+                color: rgba(56, 74, 215, 0.75);
+            }
+
+            &::before {
+                content: "(";
+            }
+
+            &::after {
+                content: ")";
+            }
+        }
     }
 
     &:not(:placeholder-shown) {
