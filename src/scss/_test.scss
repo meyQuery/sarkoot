@@ -43,7 +43,9 @@
         margin: 0;
 
         span {
+            min-width: 25px;
             width: 25px;
+            min-height: 25px;
             height: 25px;
             background-color: #eee;
             border-radius: 50%;
