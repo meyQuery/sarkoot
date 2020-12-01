@@ -122,6 +122,7 @@ $(document).on('statio:global:renderResponse', function (event, base, context) {
 			{
 				var date = new persianDate(val * 1000);
 				$(this).val(date.format('YYYY/M/D H:m'));
+				$('#' + $(this).attr('data-picker-alt')).val(val);
 			}
 		});
 	});

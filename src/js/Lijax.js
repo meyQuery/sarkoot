@@ -37,7 +37,7 @@
         function send()
         {
             var href = url.parse(location.href);
-            var name = $(context).attr('name') || $(context).attr('data-name');
+            var name = $(context).attr('data-name') || $(context).attr('name');
             if(href.get && href.get[name])
             {
                 delete href.get[name];
