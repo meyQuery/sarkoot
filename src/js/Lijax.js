@@ -79,14 +79,19 @@
                 }
                 if(back_value == value && $(context).is('input, textarea, select') && !onFire) return;
                 back_value = value;
-                var data = {};
-                if(name)
-                {
-                    data[name] = value;
-                }
-                if($(context).attr('data-merge')){
-                    var merge = JSON.parse($(context).attr('data-merge'));
-                    console.log($.extend(data, merge));
+                if($(context).is(':file')){
+                    var data = new FormData();
+                    data.append(name, context.files[0]);
+                }else{
+                    var data = {};
+                    if(name)
+                    {
+                        data[name] = value;
+                    }
+                    if($(context).attr('data-merge')){
+                        var merge = JSON.parse($(context).attr('data-merge'));
+                        console.log($.extend(data, merge));
+                    }
                 }
             }
             if ($(context).attr('data-query'))
@@ -119,12 +124,13 @@
                     }
                 }
             });
+            var uploadFile = $(context).is(':file') || ($(context).is('form') && ($(context).attr('enctype') == 'multipart/form-data' || $('input:file', context).length))  ? true : false;
             new Statio({
                 type : state ? 'both' : 'render',
                 context: context,
                 ajax : {
-					contentType: $(context).is('form') && ($(context).attr('enctype') == 'multipart/form-data' || $('input:file', context).length) ? false : 'application/x-www-form-urlencoded; charset=UTF-8',
-					processData: ($(context).is('form') && ($(context).attr('enctype') == 'multipart/form-data' || $('input:file', context).length)) ? false : true,
+					contentType:  uploadFile ? false : 'application/x-www-form-urlencoded; charset=UTF-8',
+					processData: uploadFile ? false : true,
                     cache       : false,
                     method : method,
                     data : data,
