@@ -1,4 +1,6 @@
 (function(){
+	var bodyStatio = null;
+	var requesting = false;
 	var historyBack = null;
 	var _globals = {
 		title : function (value){
@@ -109,10 +111,21 @@
 			if(!options.ajax.complete)
 			{
 				options.ajax.complete = ajx_complete;
+			}else{
+				var complete = options.ajax.complete;
+				options.ajax.complete = function(){
+					ajx_complete.call(this, ...arguments);
+					complete.call(this, ...arguments);
+				}
 			}
 			var beforeSend = options.ajax.beforeSend;
+
 			options.ajax.beforeSend = function(jqXHR, settings)
 			{
+				if(options.type != 'render' || options.ajax.type != 'GET'){
+					NProgress.configure({ showSpinner: false });
+					NProgress.start();
+				}
 				ajax_data = this;
 				ajax_send_url = this.url;
 				var urlx = url.parse(ajax_send_url);
@@ -124,7 +137,15 @@
 				ajax_send_url = urlx.url.replace(/\?([^#]*)(\#.*)?$/, get ? '?' + get + '$2' : '$2');
 				beforeSend ? beforeSend.call(this, jqXHR, settings) : null;
 			}
-			$.ajax(options.ajax);
+			if(options.fake == false && options.type != 'render'){
+			try{
+					requesting.abort();
+				}catch(e){}
+			}
+			var requestDo = this.ajax = $.ajax(options.ajax);
+			if(options.fake == false && options.type != 'render'){
+				requesting = requestDo;
+			}
 		}
 		else if(options.type != 'url' && response.body)
 		{
@@ -149,6 +170,7 @@
 
 		function ajx_complete(jqXHR, textStatus)
 		{
+			NProgress.done();
 			if(jqXHR.responseJSON)
 			{
 				response.data = jqXHR.responseJSON;
@@ -260,7 +282,11 @@
 				options.context.trigger('statio:renderResponse', [$(changed), response.data, response.body]);
 				if (response && response.data && response.data.page)
 				{
-					$('body').trigger('statio:' + response.data.page.replace(/[-]/g, ':'), [$(changed), response.data, response.body]);
+					if(bodyStatio){
+						$('body').trigger('statio:' + bodyStatio + ':onunload', [$(changed), response.data, response.body]);
+					}
+					bodyStatio = response.data.page.replace(/[-]/g, ':');
+					$('body').trigger('statio:' + bodyStatio, [$(changed), response.data, response.body]);
 				}
 			}
 		}

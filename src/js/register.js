@@ -19,14 +19,14 @@ $(document).ready(function () {
 
 $(document).on('statio:global:renderResponse', function (event, base, context) {
 	base.each(function () {
-		$('.input-avatar', this).hajmad();
+		// $('.input-avatar', this).hajmad();
 		$('.dropdown-menu.keep-open', this).on('click', function (event) {
 			event.stopPropagation();
 		});
 		$('[data-Lijax], .lijax', this).each(function () {
 			new Lijax(this);
 		});
-		$("a", this).not('.direct, [data-direct], [target=_blank], .lijax, [data-lijax]').on('click', function () {
+		$("a", this).not('.direct, [data-direct], [target=_blank], .lijax, [data-lijax]').on('click', function (e) {
 			if (/^\#(.*)$/.test($(this).attr('href'))){
 				return true;
 			}
@@ -35,7 +35,7 @@ $(document).on('statio:global:renderResponse', function (event, base, context) {
 				type: $(this).is('.action') ? 'render' : 'both',
 				context: $(this),
 			});
-			return false;
+			e.preventDefault();
 		});
 
 		$('form[action]', this).not('.direct, [data-direct], [target=_blank], .lijax').each(function () {
@@ -60,22 +60,22 @@ $(document).on('statio:global:renderResponse', function (event, base, context) {
 				}
 			}
 		});
-		$(".select2-select", this).each(function () {
-			select2element.call(this);
-		});
-		$('.select2-select[data-relation]', this).on('select2:select', function (e) {
-			var relation_ids = $(this).attr('data-relation');
-			var f_id = $(this).val();
-			relation_ids.split(' ').forEach(function (relation_id){
-				var relation = $('#' + relation_id);
-				if (!relation.length) return;
-				var url = unescape(relation.attr('data-url-pattern')).replace('%%', f_id);
-				relation.attr('data-url', url);
-				relation.val(null).trigger("change");
-				relation.select2('destroy');
-				select2element.call(relation[0]);
-			});
-		});
+		// $(".select2-select", this).each(function () {
+		// 	select2element.call(this);
+		// });
+		// $('.select2-select[data-relation]', this).on('select2:select', function (e) {
+		// 	var relation_ids = $(this).attr('data-relation');
+		// 	var f_id = $(this).val();
+		// 	relation_ids.split(' ').forEach(function (relation_id){
+		// 		var relation = $('#' + relation_id);
+		// 		if (!relation.length) return;
+		// 		var url = unescape(relation.attr('data-url-pattern')).replace('%%', f_id);
+		// 		relation.attr('data-url', url);
+		// 		relation.val(null).trigger("change");
+		// 		relation.select2('destroy');
+		// 		select2element.call(relation[0]);
+		// 	});
+		// });
 		$('.date-picker', this).each(function(){
 			var val = $(this).val();
 			var _self = this;
@@ -249,9 +249,7 @@ function select2result_users(data, option)
 
 $(window).on('hashchange', function(){
 	var selectedTab = location.hash;
-	var tabNav = $('[data-toggle=tab][href$="' + selectedTab + '"]');
-	if (tabNav.length)
-	{
-		tabNav.trigger('click');
+	if(window.tabs && window.tabs.toggle){
+		window.tabs.toggle(selectedTab);
 	}
 });

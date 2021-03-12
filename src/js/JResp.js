@@ -41,7 +41,8 @@
 			{
 				new Statio({
 					url : res.redirect,
-					replace : res.replace
+					replace : res.replace,
+					type : ['render', 'url'].indexOf(res.lijax_type) >= 0 ? res.lijax_type : 'both'
 				});
 			}
 		}

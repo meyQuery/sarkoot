@@ -48,6 +48,10 @@
             var method = $(context).attr('data-method') || $(context).attr('method') || 'GET';
             var state = $(context).attr('data-state');
             var value = undefined;
+            $(context).addClass('lijax-sending');
+            $(context).on('statio:done', function () {
+                $(this).removeClass('lijax-sending');
+            });
             if($(context).is('form'))
             {
                 var Data = new FormData(context);
@@ -63,11 +67,9 @@
                     });
                 }
                 state = false;
-                $(context).addClass('lijax-sending');
                 $('input, select, textarea, button', context).not(':disabled').addClass('lijax-disable').attr('disabled', 'disabled');
                 $(context).on('statio:done', function () {
                     $('.lijax-disable', this).removeClass('lijax-disable').removeAttr('disabled')
-                    $(this).removeClass('lijax-sending');
                 });
             }
             else
@@ -125,6 +127,7 @@
                 }
             });
             var uploadFile = $(context).is(':file') || ($(context).is('form') && ($(context).attr('enctype') == 'multipart/form-data' || $('input:file', context).length))  ? true : false;
+            $(context).trigger('lijax:data', [data]);
             new Statio({
                 type : state ? 'both' : 'render',
                 context: context,
