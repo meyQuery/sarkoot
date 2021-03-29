@@ -126,6 +126,24 @@
                     }
                 }
             });
+            var remove_query = $(context).attr('data-remove-query');
+            if(remove_query){
+                var a_url = url.parse(action);
+                var queries = remove_query.split(' ');
+                if(a_url.get){
+                    for(var i = 0; i < queries.length; i++){
+                        if(a_url.get[queries[i]]){
+                            delete a_url.get[queries[i]];
+                        }
+                    }
+                }
+                var s_queries = [];
+                for(var index in (a_url.get || {})){
+                    s_queries.push(index +'='+a_url.get[index]);
+                }
+                a_url.query = s_queries.join('&');
+                action = url.build(a_url);
+            }
             var uploadFile = $(context).is(':file') || ($(context).is('form') && ($(context).attr('enctype') == 'multipart/form-data' || $('input:file', context).length))  ? true : false;
             $(context).trigger('lijax:data', [data]);
             new Statio({

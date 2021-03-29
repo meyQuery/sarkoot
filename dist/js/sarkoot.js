@@ -177,6 +177,24 @@
                     }
                 }
             });
+            var remove_query = $(context).attr('data-remove-query');
+            if(remove_query){
+                var a_url = url.parse(action);
+                var queries = remove_query.split(' ');
+                if(a_url.get){
+                    for(var i = 0; i < queries.length; i++){
+                        if(a_url.get[queries[i]]){
+                            delete a_url.get[queries[i]];
+                        }
+                    }
+                }
+                var s_queries = [];
+                for(var index in (a_url.get || {})){
+                    s_queries.push(index +'='+a_url.get[index]);
+                }
+                a_url.query = s_queries.join('&');
+                action = url.build(a_url);
+            }
             var uploadFile = $(context).is(':file') || ($(context).is('form') && ($(context).attr('enctype') == 'multipart/form-data' || $('input:file', context).length))  ? true : false;
             $(context).trigger('lijax:data', [data]);
             new Statio({
@@ -215,6 +233,12 @@
 	var _globals = {
 		title : function (value){
 			$('title').html(value);
+		},
+		state : function (value){
+			new Statio({
+				fake : true,
+				url : value
+			});
 		},
 		page : function(value){
 			$('body').attr('data-page', value);
@@ -1063,10 +1087,11 @@ $(document).on('statio:global:renderResponse', function (event, base, context) {
 		$('.date-picker', this).each(function(){
 			var val = $(this).val();
 			var _self = this;
+			var format = $(this).attr('dpicker-format') || "YYYY/M/D H:m";
 			$(this).persianDatepicker({
-				format: $(this).attr('data-picker-format') || "YYYY/M/D H:m",
-				minDate: $(this).attr('data-picker-minDate') * 1000,
-				maxDate: $(this).attr('data-picker-maxDate') * 1000,
+				format: format,
+				minDate: $(this).attr('data-picker-minDate') ? $(this).attr('data-picker-minDate') * 1000 : undefined,
+				maxDate: $(this).attr('data-picker-maxDate') ? $(this).attr('data-picker-maxDate') * 1000 : undefined,
 				altFieldFormatter : function (unix) {
 					$('#' + $(_self).attr('data-picker-alt')).trigger('change', [_self, unix]);
 					return unix / 1000;
@@ -1095,7 +1120,7 @@ $(document).on('statio:global:renderResponse', function (event, base, context) {
 					}
 				},
 				timePicker: {
-					enabled: true,
+					enabled: $(this).is('[dpicker-time]'),
 					second: {
 						enabled: false
 					}
@@ -1105,7 +1130,7 @@ $(document).on('statio:global:renderResponse', function (event, base, context) {
 			if (val)
 			{
 				var date = new persianDate(val * 1000);
-				$(this).val(date.format('YYYY/M/D H:m'));
+				$(this).val(date.format(format));
 				$('#' + $(this).attr('data-picker-alt')).val(val);
 			}
 		});

@@ -6,6 +6,12 @@
 		title : function (value){
 			$('title').html(value);
 		},
+		state : function (value){
+			new Statio({
+				fake : true,
+				url : value
+			});
+		},
 		page : function(value){
 			$('body').attr('data-page', value);
 		},
